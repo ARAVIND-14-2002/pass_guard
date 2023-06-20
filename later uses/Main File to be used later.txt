@@ -1,0 +1,84 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pass_guard/presentation/screens/initial/initial_screen.dart';
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  
+  runApp(
+    child:const Myapp()
+  );
+  
+}
+
+class Myapp extends StatefulWidget{
+
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<Myapp> {
+
+  @override
+  void inintState() {
+    main();
+    super.initState();
+  }
+
+
+  void main() async {
+    const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+
+    final containsEncryptionKey = await secureStorage.containsKey(key: 'key');
+
+    if (!containsEncryptionKey) {
+      var key = Hive.generateSecureKey();
+      await secureStorage.write(key: 'key', value: base64UrlEncode(key));
+    }
+
+    final key = await secureStorage.read(key: 'key');
+
+    var encryptionkey = base64Url.decode(key!);
+
+    Hive.registerAdapter(PasswordModelAdapter());
+    Hive.registerAdapter(CardModelAdapter());
+    Hive.registerAdapter(NotesModelAdapter());
+
+    await Hive.openBox<PasswordModel>('encrypt-password-arvi',
+        encryptionCipher: HiveAesCipher(encryptionkey));
+    await Hive.openBox<CardModel>('encrypt-card-wallet-arvi',
+        encryptionCipher: HiveAesCipher(encryptionkey));
+    await Hive.openBox<NotesModel>(
+        'encrypt-notes-arvi', encryptionCipher: HiveAesCipher(encryptionkey));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarBrightness: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark)
+    );
+
+    return BlocBuilder<ThemesBloc, ThemesState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Pass Guard',
+            debugShowCheckedModeBanner: false,
+            home: const InitialScreen(),
+
+          );
+        }
+
+    );
+  }
+}

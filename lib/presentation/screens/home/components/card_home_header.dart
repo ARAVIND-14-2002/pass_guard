@@ -49,7 +49,7 @@ class CardHomeHeader extends StatelessWidget {
             const SizedBox(height: 5.0),
             TextCustom(
               text: subtitle,
-              color: const Color(0xff7e8896),
+              color: const Color(0xff9a9a9a),
               fontSize: 12,
             ),
           ],

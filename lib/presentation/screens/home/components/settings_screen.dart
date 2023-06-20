@@ -1,32 +1,60 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pass_guard/domain/blocs/blocs.dart';
-import 'package:pass_guard/presentation/components/components.dart';
 import 'package:pass_guard/presentation/screens/about/home_about_screen.dart';
+import 'package:pass_guard/presentation/screens/home/components/profileprovider.dart';
 import 'package:pass_guard/presentation/screens/initial/initial_screen.dart';
 import 'package:pass_guard/presentation/screens/security/home_security_screen.dart';
 import 'package:pass_guard/presentation/themes/themes.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
-import 'animated_toggle_theme.dart';
-import 'item_modal_setting.dart';
+class SettingsScreen extends StatefulWidget {
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
 
-class SettingsScreen extends StatelessWidget {
+class _SettingsScreenState extends State<SettingsScreen> {
+  File? _image;
+  bool _isEditing = false;
+  final TextEditingController _profileNameController = TextEditingController();
+
+  @override
+  void dispose() {
+    _profileNameController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _pickImage() async {
+    final pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      final imageFile = File(pickedImage.path);
+      final appDir = await getApplicationDocumentsDirectory();
+      final fileName = 'profile_image.jpg';
+      final savedImage = await imageFile.copy('${appDir.path}/$fileName');
+      setState(() {
+        _image = savedImage;
+      });
+    }
+  }
+
+  void _toggleEditing() {
+    setState(() {
+      _isEditing = !_isEditing;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final themesBloc = BlocProvider.of<ThemesBloc>(context);
-    final authBloc = BlocProvider.of<AuthBloc>(context);
-    final size = MediaQuery.of(context).size;
+    final profileName = _isEditing ? _profileNameController.text : "";
 
     return Scaffold(
       appBar: AppBar(
-        title: TextCustom(
-          text: 'Settings',
-          fontWeight: FontWeight.w600,
-          color: Theme.of(context).primaryColor,
-        ),
+        title: Text('Settings'),
         leading: IconButton(
-          icon: const Icon(FontAwesomeIcons.xmark, color: Colors.red),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -36,100 +64,113 @@ class SettingsScreen extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 60,
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                'PassGuard',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: _pickImage,
+                child: CircleAvatar(
+                  radius: 60,
+                  backgroundImage: _image != null ? FileImage(_image!) : null,
                 ),
               ),
-              // const SizedBox(height: 16.0),
-              // const TextCustom(
-              //   text: 'Light mode',
-              //   color: ColorsFrave.subtitle,
-              //   fontSize: 15,
-              // ),
-              // const SizedBox(height: 10.0),
-              // BlocBuilder<ThemesBloc, ThemesState>(
-              //   builder: (_, state) {
-              //     return AnimatedToggleTheme(
-              //       onChanged: () {
-              //         themesBloc.add(ChangeThemeToOscureEvent(!state.isOscure));
-              //       },
-              //     );
-              //   },
-              // ),
+              const SizedBox(height: 16.0),
+              _isEditing
+                  ? TextFormField(
+                controller: _profileNameController,
+                decoration: InputDecoration(
+                  labelText: 'Profile Name',
+                  prefixIcon: Icon(Icons.person),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.check),
+                    onPressed: _toggleEditing,
+                  ),
+                  border: OutlineInputBorder(),
+                ),
+              )
+                  : Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      profileName,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: _toggleEditing,
+                  ),
+                ],
+              ),
               const SizedBox(height: 15.0),
-              const TextCustom(
-                text: 'General',
-                color: ColorsFrave.subtitle,
-                fontSize: 15,
+              const SizedBox(height: 15.0),
+              const Text(
+                'General',
+                style: TextStyle(
+                  color: ColorsFrave.subtitle,
+                  fontSize: 15,
+                ),
               ),
               const SizedBox(height: 10.0),
               Card(
                 color: Theme.of(context).cardTheme.color,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Column(
                   children: [
                     ListTile(
-                      leading: const Icon(FontAwesomeIcons.lock),
+                      leading: const Icon(Icons.security),
                       title: const Text('Security'),
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          routeFade(page: const HomeSecurityScreen()),
-                        );
+                        // Navigate to the security screen
                       },
                     ),
-                    const Divider(),
+                    const Divider(
+                      thickness: 0.2,
+                      color: Colors.white,
+                    ),
                     ListTile(
-                      leading: const Icon(FontAwesomeIcons.barcode),
+                      leading: const Icon(Icons.info),
                       title: const Text('About'),
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          routeFade(page: const HomeAboutScreen()),
-                        );
+                        // Navigate to the about screen
                       },
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 15.0),
-              const TextCustom(
-                text: 'More',
-                color: Color(0xff6a6570),
-                fontSize: 15,
+              const Text(
+                'More',
+                style: TextStyle(
+                  color: Color(0xff6a6570),
+                  fontSize: 15,
+                ),
               ),
               const SizedBox(height: 8.0),
               Card(
                 color: Theme.of(context).cardTheme.color,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Column(
                   children: [
                     ListTile(
-                      leading: const Icon(FontAwesomeIcons.info),
-                      title: const Text('App version                                       v1.5.0'),
-
-                      onTap: () {},
+                      leading: const Icon(Icons.info),
+                      title: const Text('App version'),
+                      onTap: () {
+                        // Handle app version tap
+                      },
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 15.0),
+              const SizedBox(height: 20.0),
               TextButton(
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -138,10 +179,11 @@ class SettingsScreen extends StatelessWidget {
                   backgroundColor: Theme.of(context).cardTheme.color,
                 ),
                 onPressed: () {
-                  authBloc.add(VerifyAccountEvent());
                   Navigator.pushAndRemoveUntil(
                     context,
-                    routeFade(page: const InitialScreen()),
+                    MaterialPageRoute(
+                      builder: (context) => InitialScreen(),
+                    ),
                         (_) => false,
                   );
                 },
@@ -149,16 +191,17 @@ class SettingsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      FontAwesomeIcons.arrowRightFromBracket,
-                      color: ColorsFrave.redLogOut,
+                      Icons.arrow_right,
+                      color: Colors.red,
                       size: 20,
                     ),
                     SizedBox(width: 10.0),
-                    TextCustom(
-                      text: 'Log out',
-                      isTitle: true,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.red,
+                    Text(
+                      'Log out',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.red,
+                      ),
                     ),
                   ],
                 ),

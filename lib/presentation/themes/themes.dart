@@ -5,7 +5,7 @@ class ColorsFrave {
   static const Color primary = Color(0xff4e31aa);
   static const Color background = Color(0xffFFFFFF);
   static const Color backgroundTextField = Color(0xffF5F5F5);
-  static const Color grey = Color(0xff8D949F);
+  static const Color grey = Color(0xffe5e5e5);
   static const Color backgrondGrey = Color(0xffF7F8F9);
   static const Color redLogOut = Color(0xffBC4841);
   static const Color subtitle = Color(0xffd7d7d7);
@@ -37,15 +37,15 @@ class ThemesFraved {
 
   static ThemeData appThemeDark = ThemeData(
 
-    primaryColorDark: Colors.white60,
+    primaryColorDark: Color(4294309367),
     brightness: Brightness.dark,
     scaffoldBackgroundColor: const Color(0xFF07001C),
     colorScheme: const ColorScheme.dark(),
-    cardTheme: const CardTheme(color: Color(0xff29313D)),
-    iconTheme: const IconThemeData(color: Colors.white),
+    cardTheme: const CardTheme (color: Colors.white10),
+    iconTheme: const IconThemeData(color: Color(4294309367)),
     primaryColor:Color(4294309367),
-    cardColor: const Color(0xff29313D),
-    dialogBackgroundColor: const Color(0xFF202630),
+    cardColor: const Color(0xff28383d),
+    dialogBackgroundColor: const Color(0xFF4F4F4F),
 
 
     appBarTheme:  const AppBarTheme(

@@ -74,7 +74,7 @@ class CardPassword extends StatelessWidget {
                   snackMessageSuccess(context, 'copied');
                   passwordBloc.add(CopyPasswordEvent(password));
                 }, 
-                icon: Icon(FontAwesomeIcons.clone, size: 20, color: Colors.grey.shade600)
+                icon: Icon(FontAwesomeIcons.clone, size: 20, color: Colors.grey.shade400)
               )
             ],
           ),

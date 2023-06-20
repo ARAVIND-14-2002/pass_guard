@@ -61,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Text(
                 'PassGuard',
                 style: TextStyle(
@@ -117,6 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+
                 const SizedBox(height: 20.0),
                 TextCustom(
                   text: 'Categories',
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: 'Browser',
                             subtitle: '${state.passwordBrowser.length} password',
                             icon: FontAwesomeIcons.earthAmericas,
-                            color: const Color(0xffB288F7),
+                            color: const Color(0xffaa79ff),
                             onTap: () async {
                               await Navigator.push(context, routeFade(page: const BrowserPasswordScreen()));
                               homeBloc.add(ClearSearchBrowserPasswordEvent());
@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: 'Apps',
                             subtitle: '${state.passwordApp.length} password',
                             icon: FontAwesomeIcons.mobileScreen,
-                            color: const Color(0xff2D9E2D),
+                            color: const Color(0xff66ff66),
                             onTap: () async {
                               await Navigator.push(context, routeFade(page: const AppPasswordScreen()));
                               homeBloc.add(ClearSearchAppPasswordEvent());

@@ -63,6 +63,7 @@ dependencies:
   path_provider_extention: ^1.0.3
   provider: ^6.0.5
   shared_preferences: ^2.1.2
+  permission_handler: ^10.3.0
 
 dev_dependencies:
   flutter_test:

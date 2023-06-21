@@ -47,21 +47,26 @@ class _ChangePinScreenState extends State<ChangePinScreen> {
             )
           ],
         ),
-        body: SafeArea(
+          body: SafeArea(
+          child: SingleChildScrollView( // Wrap the Column with SingleChildScrollView
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Center(
-                  child: TextCustom(
-                    text: 'Enter your new password',
-                    fontSize: 21,
-                    isTitle: true,
-                    color: ColorsFrave.primary,
-                  )
-                ),
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+          Image.asset(
+          'assets/img/logo-white.png', // Replace with your image path
+          height: 80,
+          ),
+          const Center(
+          child: TextCustom(
+          text: 'Enter Master Password',
+          fontSize: 24,
+          isTitle: true,
+          color: Color(4294309367),
+          ),
+          ),
                 Column(
                   children: [
                     const SizedBox(height: 40.0),
@@ -78,8 +83,8 @@ class _ChangePinScreenState extends State<ChangePinScreen> {
                                 : FontAwesomeIcons.circle, 
                                 color: state.newNumbers.length >= i + 1
                                 ? ColorsFrave.primary
-                                : Colors.grey, 
-                                size: 16.0
+                                : Color(4294309367),
+                                size: 40.0
                               ),
                             )
                           ),
@@ -161,28 +166,40 @@ class _ChangePinScreenState extends State<ChangePinScreen> {
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 10,),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                const SizedBox(width: 70.0,),
+                                const SizedBox(width: 60.0,),
                                 NumberOption(
                                   text: '${state.listNumberByCreate[9]}',
                                   onTap: () {
                                     securityBloc.add(SelectNumberNewPinEvent(state.listNumberByCreate[9]));
                                   },
                                 ),
-                                const SizedBox(width: 20.0),
-                                BlocBuilder<SecurityBloc, SecurityState>(
+                        Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.blueGrey.shade100,
+                        ),
+
+                             child:   BlocBuilder<SecurityBloc, SecurityState>(
                                   builder: (_, stateSecurity) {
                                     return IconButton(
-                                      splashRadius: 30,
+                                      splashRadius: 60,
                                       onPressed: (){
                                         securityBloc.add(ClearLastNumberNewPinEvent(stateSecurity.newNumbers.length));
-                                      }, 
-                                      icon: const Icon(FontAwesomeIcons.deleteLeft, color: Colors.grey)
+                                      },
+                        icon: const Icon(
+                        FontAwesomeIcons.xmarkCircle,
+                        color: Colors.black,
+                        ),
                                     );
                                   }
                                 )
+                        ),
                               ],
                             ),
                           ],
@@ -196,6 +213,7 @@ class _ChangePinScreenState extends State<ChangePinScreen> {
             ),
           ),
         ),
+      ),
       ),
     );
   }

@@ -47,21 +47,26 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
             )
           ],
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Center(
-                  child: TextCustom(
-                    text: 'Enter your password',
-                    fontSize: 21,
-                    isTitle: true,
-                    color: ColorsFrave.primary,
-                  )
-                ),
+    body: SafeArea(
+    child: SingleChildScrollView( // Wrap the Column with SingleChildScrollView
+    child: Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+    Image.asset(
+    'assets/img/logo-white.png', // Replace with your image path
+    height: 80,
+    ),
+    const Center(
+    child: TextCustom(
+    text: 'Enter Master Password',
+    fontSize: 24,
+    isTitle: true,
+    color: Color(4294309367),
+    ),
+    ),
                 Column(
                   children: [
                     const SizedBox(height: 40.0),
@@ -80,8 +85,8 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
                                 ? state.isFailurePassword
                                   ? Colors.red
                                   : ColorsFrave.primary
-                                : Colors.grey, 
-                                size: 16.0
+                                : Color(4294309367),
+                                size: 40.0
                               ),
                             )
                           ),
@@ -94,110 +99,160 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+// First Row
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                NumberOption(
-                                  text: '${state.listNumberByCreate[0]}',
-                                  onTap: () {
-                                    securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[0]));
-                                  },
+                                Expanded(
+                                  child: NumberOption(
+                                    text: '${state.listNumberByCreate[0]}',
+                                    onTap: () {
+                                      securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[0]));
+                                    },
+                                  ),
                                 ),
-                                NumberOption(
-                                  text: '${state.listNumberByCreate[1]}',
-                                  onTap: () {
-                                    securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[1]));
-                                  },
+                                const SizedBox(width: 10.0),
+                                Expanded(
+                                  child: NumberOption(
+                                    text: '${state.listNumberByCreate[1]}',
+                                    onTap: () {
+                                      securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[1]));
+                                    },
+                                  ),
                                 ),
-                                NumberOption(
-                                  text: '${state.listNumberByCreate[2]}',
-                                  onTap: () {
-                                    securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[2]));
-                                  },
+                                const SizedBox(width: 10.0),
+                                Expanded(
+                                  child: NumberOption(
+                                    text: '${state.listNumberByCreate[2]}',
+                                    onTap: () {
+                                      securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[2]));
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 10.0),
+// Second Row
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                NumberOption(
-                                  text: '${state.listNumberByCreate[3]}',
-                                  onTap: () {
-                                    securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[3]));
-                                  },
+                                Expanded(
+                                  child: NumberOption(
+                                    text: '${state.listNumberByCreate[3]}',
+                                    onTap: () {
+                                      securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[3]));
+                                    },
+                                  ),
                                 ),
-                                NumberOption(
-                                  text: '${state.listNumberByCreate[4]}',
-                                  onTap: () {
-                                    securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[4]));
-                                  },
+                                const SizedBox(width: 10.0),
+                                Expanded(
+                                  child: NumberOption(
+                                    text: '${state.listNumberByCreate[4]}',
+                                    onTap: () {
+                                      securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[4]));
+                                    },
+                                  ),
                                 ),
-                                NumberOption(
-                                  text: '${state.listNumberByCreate[5]}',
-                                  onTap: () {
-                                    securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[5]));
-                                  },
+                                const SizedBox(width: 10.0),
+                                Expanded(
+                                  child: NumberOption(
+                                    text: '${state.listNumberByCreate[5]}',
+                                    onTap: () {
+                                      securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[5]));
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
+// ...
+
+                            const SizedBox(height: 10.0),
+                            // Third Row
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                NumberOption(
-                                  text: '${state.listNumberByCreate[6]}',
-                                  onTap: () {
-                                    securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[6]));
-                                  },
+                                Expanded(
+                                  child: NumberOption(
+                                    text: '${state.listNumberByCreate[6]}',
+                                    onTap: () {
+                                      securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[6]));
+                                    },
+                                  ),
                                 ),
-                                NumberOption(
-                                  text: '${state.listNumberByCreate[7]}',
-                                  onTap: () {
-                                    securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[7]));
-                                  },
+                                const SizedBox(width: 10.0),
+                                Expanded(
+                                  child: NumberOption(
+                                    text: '${state.listNumberByCreate[7]}',
+                                    onTap: () {
+                                      securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[7]));
+                                    },
+                                  ),
                                 ),
-                                NumberOption(
-                                  text: '${state.listNumberByCreate[8]}',
-                                  onTap: () {
-                                    securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[8]));
-                                  },
+                                const SizedBox(width: 10.0),
+                                Expanded(
+                                  child: NumberOption(
+                                    text: '${state.listNumberByCreate[8]}',
+                                    onTap: () {
+                                      securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[8]));
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 10.0),
+
+                            // Fourth Row
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                const SizedBox(width: 70.0,),
+                                const SizedBox(width: 60.0),
                                 NumberOption(
                                   text: '${state.listNumberByCreate[9]}',
                                   onTap: () {
                                     securityBloc.add(SelectNumberVerifyPinEvent(state.listNumberByCreate[9]));
                                   },
                                 ),
-                                const SizedBox(width: 20.0),
-                                BlocBuilder<SecurityBloc, SecurityState>(
-                                  builder: (_, stateSecurity) {
-                                    return IconButton(
-                                      splashRadius: 30,
-                                      onPressed: (){
-                                        securityBloc.add(ClearLastNumberVerifyPinEvent(stateSecurity.numbers.length));
-                                      }, 
-                                      icon: const Icon(FontAwesomeIcons.deleteLeft, color: Colors.grey)
-                                    );
-                                  }
-                                )
+                                Container(
+                                  width: 60,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.blueGrey.shade100,
+                                  ),
+                                  child: BlocBuilder<SecurityBloc, SecurityState>(
+                                          builder: (_, stateSecurity) {
+                                            return IconButton(
+                                              splashRadius: 60,
+                                              onPressed: () {
+                                                securityBloc.add(
+                                                    ClearLastNumberVerifyPinEvent(
+                                                        stateSecurity.numbers
+                                                            .length));
+                                              },
+                                              icon: const Icon(
+                                                FontAwesomeIcons.xmarkCircle,
+                                                color: Colors.black,
+                                              ),
+                                            );
+                                          }
+                                  ),
+                                ),
                               ],
                             ),
+
+
                           ],
                         );
                       },
                     ),
-                  ]
+                  ],
                 ),
-                const SizedBox(height: 80.0)
-              ],
-            ),
-          ),
-        ),
+      const SizedBox(height: 80),
+    ],
+    ),
+    ),
+    ),
+    ),
       ),
     );
   }

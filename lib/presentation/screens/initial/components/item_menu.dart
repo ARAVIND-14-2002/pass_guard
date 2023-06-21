@@ -6,6 +6,8 @@ class ItemMenu extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final bool isDisable;
+  final double iconSize;
+  final double textSize;
 
   const ItemMenu({
     Key? key,
@@ -13,6 +15,8 @@ class ItemMenu extends StatelessWidget {
     required this.title,
     required this.onTap,
     this.isDisable = false,
+    this.iconSize = 24,
+    this.textSize = 16,
   }) : super(key: key);
 
   @override
@@ -34,12 +38,12 @@ class ItemMenu extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(icon, color: isDisable ? Colors.grey : Colors.white, size: 18),
+            Icon(icon, color: isDisable ? Colors.grey : Colors.white, size: iconSize),
             const SizedBox(height: 10.0),
             TextCustom(
               text: title,
               color: isDisable ? Colors.grey : Colors.white,
-              fontSize: 14,
+              fontSize: textSize,
               maxLines: 3,
               textAlign: TextAlign.center,
               fontWeight: FontWeight.w600,

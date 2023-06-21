@@ -14,22 +14,18 @@ import 'package:pass_guard/presentation/screens/initial/components/background_in
 import 'package:pass_guard/presentation/screens/passwords/generate_password_screen.dart';
 import 'package:pass_guard/presentation/screens/report_problem/report_problem_screen.dart';
 import 'package:pass_guard/presentation/screens/security/image_capture_screen.dart';
+import 'package:pass_guard/presentation/screens/home/components/settings_screen.dart';
 import 'package:pass_guard/presentation/themes/themes.dart';
 import 'package:pass_guard/presentation/screens/auth/biometrics.dart';
 import 'components/item_menu.dart';
 
-
-
 class InitialScreen extends StatelessWidget {
-
   const InitialScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final randomNumberBloc = BlocProvider.of<RandomNumberBloc>(context);
     final authBloc = BlocProvider.of<AuthBloc>(context);
-     DateTime now = DateTime.now();
 
     return Scaffold(
       body: Stack(
@@ -49,15 +45,13 @@ class InitialScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextCustom(
-                          text: now.hour >= 18
-                            ? 'PassGuard'
-                            : 'PassGuard',
-                          isTitle: true, 
-                          fontSize: 22, 
-                          fontWeight: FontWeight.w600, 
-                          color:now.hour >= 18 ? Colors.white : Colors.white
+                          text: 'PassGuard',
+                          isTitle: true,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
                         ),
-                        Icon(FontAwesomeIcons.lock, color: now.hour >= 18 ? Colors.white : Colors.white )
+                        Icon(FontAwesomeIcons.lock, color: Colors.white),
                       ],
                     ),
                     const SizedBox(height: 40.0),
@@ -67,17 +61,21 @@ class InitialScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
-                            color: Colors.red
+                            color: ColorsFrave.primary.withOpacity(0.5),
                           ),
                           child: Row(
                             children: [
                               CircleAvatar(
                                 radius: 20,
-                                child: Icon(state.existAccount ? FontAwesomeIcons.user : FontAwesomeIcons.solidFaceSadTear, size: 15, color: Colors.white),
+                                child: Icon(
+                                  state.existAccount ? FontAwesomeIcons.user : FontAwesomeIcons.solidFaceSadTear,
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
                               ),
                               const SizedBox(width: 10.0),
                               TextCustom(
-                                text: state.existAccount ? 'Main Account' : 'No account', 
+                                text: state.existAccount ? 'Main Account' : 'No account',
                                 isTitle: true,
                                 color: Colors.white,
                                 fontSize: 15,
@@ -96,15 +94,15 @@ class InitialScreen extends StatelessWidget {
                     children: [
                       BlocBuilder<AuthBloc, AuthState>(
                         builder: (context, state) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               ItemMenu(
                                 icon: FontAwesomeIcons.circlePlus,
                                 title: 'Create',
                                 isDisable: state.existAccount,
-                                onTap: (){
-                                  if(!state.existAccount){
+                                onTap: () {
+                                  if (!state.existAccount) {
                                     randomNumberBloc.add(GenerateRandomNumberCreateEvent());
                                     Navigator.push(context, routeFade(page: const CreateAccountScreen()));
                                   }
@@ -127,10 +125,10 @@ class InitialScreen extends StatelessWidget {
                                 icon: FontAwesomeIcons.lock,
                                 title: 'Delete',
                                 isDisable: !state.existAccount,
-                                onTap: (){
-                                  if(state.existAccount){
+                                onTap: () {
+                                  if (state.existAccount) {
                                     randomNumberBloc.add(GenerateRandomNumberCreateEvent());
-                                    Navigator.push(context, routeFade(page: const VerifyPasswordDeleteScreen())).then((_){
+                                    Navigator.push(context, routeFade(page: const VerifyPasswordDeleteScreen())).then((_) {
                                       authBloc.add(ClearAllNumbersEvent());
                                     });
                                   }
@@ -141,33 +139,32 @@ class InitialScreen extends StatelessWidget {
                         },
                       ),
                       const SizedBox(height: 30.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ItemMenu(
-                            icon: FontAwesomeIcons.paperPlane,
-                            title: 'Privacy Policy',
-                            onTap: (){
-                              Navigator.push(context, routeFade(page: const PrivacyPolicyScreen()));
-                            },
-                          ),
-                          ItemMenu(
-                            icon: FontAwesomeIcons.barcode,
-                            title: 'About',
-                            onTap: (){
-                              Navigator.push(context, routeFade(page: HomeAboutScreen()));
-                            },
-                          ),
-                          ItemMenu(
-                            icon: FontAwesomeIcons.key,
-                            title: 'Generate',
-                            onTap: (){
-                              Navigator.push(context, routeFade(page: const GeneratePasswordScreen()));
-                            },
-                          ),
-                        ],
-                      ),
-                      
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     ItemMenu(
+                      //       icon: FontAwesomeIcons.paperPlane,
+                      //       title: 'Privacy Policy',
+                      //       onTap: () {
+                      //         Navigator.push(context, routeFade(page: const PrivacyPolicyScreen()));
+                      //       },
+                      //     ),
+                      //     ItemMenu(
+                      //       icon: FontAwesomeIcons.barcode,
+                      //       title: 'About',
+                      //       onTap: () {
+                      //         Navigator.push(context, routeFade(page: HomeAboutScreen()));
+                      //       },
+                      //     ),
+                      //     ItemMenu(
+                      //       icon: FontAwesomeIcons.key,
+                      //       title: 'Generate',
+                      //       onTap: () {
+                      //         Navigator.push(context, routeFade(page: const GeneratePasswordScreen()));
+                      //       },
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 )
@@ -179,7 +176,3 @@ class InitialScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-

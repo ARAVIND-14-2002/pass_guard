@@ -28,7 +28,7 @@ class AuthState extends Equatable {
     isSuccessPassword: isSuccessPassword ?? this.isSuccessPassword,
   );
 
-  
+
   @override
   List<Object> get props => [
     existAccount,
@@ -36,6 +36,5 @@ class AuthState extends Equatable {
     isFailPassword,
     isSuccessPassword,
   ];
-  
-}
 
+}

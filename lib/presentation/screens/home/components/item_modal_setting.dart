@@ -28,14 +28,14 @@ class ItemModalSetting extends StatelessWidget {
           Row(
             children: [
               Container(
-                height: 40,
-                width: 40,
+                height: 50,
+                width: 50,
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(10.0),
                   border: Border.all(color: Colors.white)
                 ),
-                child: Icon(icon, size: 19, color: Theme.of(context).iconTheme.color)
+                child: Icon(icon, size: 16, color: Theme.of(context).iconTheme.color)
               ),
               const SizedBox(width: 10.0),
               TextCustom(
@@ -46,11 +46,11 @@ class ItemModalSetting extends StatelessWidget {
           ),
           isVersion
           ? const TextCustom(
-              text: 'v1.0.0(1)',
+              text: 'v1.0.0',
               color: Colors.grey,
               fontSize: 14,
             )
-          : Icon(FontAwesomeIcons.angleRight, size: 19.0, color: Theme.of(context).iconTheme.color)
+          : Icon(FontAwesomeIcons.anglesRight, size: 19.0, color: Theme.of(context).iconTheme.color)
         ],
       ),
     );

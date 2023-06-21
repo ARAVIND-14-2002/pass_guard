@@ -1,15 +1,20 @@
 import 'dart:io';
+import 'package:path/path.dart' as path;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pass_guard/presentation/screens/about/home_about_screen.dart';
-import 'package:pass_guard/presentation/screens/home/components/profileprovider.dart';
-import 'package:pass_guard/presentation/screens/initial/initial_screen.dart';
-import 'package:pass_guard/presentation/screens/security/home_security_screen.dart';
-import 'package:pass_guard/presentation/themes/themes.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import '../../../components/animation_route.dart';
+import '../../../themes/themes.dart';
+import '../../about/home_about_screen.dart';
+import '../../initial/initial_screen.dart';
+import '../../security/home_security_screen.dart';
+import 'item_modal_setting.dart';
+
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -27,190 +32,293 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.dispose();
   }
 
-  Future<void> _pickImage() async {
-    final pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
-      final imageFile = File(pickedImage.path);
-      final appDir = await getApplicationDocumentsDirectory();
-      final fileName = 'profile_image.jpg';
-      final savedImage = await imageFile.copy('${appDir.path}/$fileName');
-      setState(() {
-        _image = savedImage;
-      });
+  Future<void> _requestPermissions() async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      // Permission granted, you can now pick an image.
+      _pickImage();
+    } else {
+      // Permission denied, handle accordingly (show a message, disable functionality, etc.).
+      // You can also open the app settings screen to let the user manually grant the required permissions.
+      if (status.isPermanentlyDenied) {
+        openAppSettings();
+      }
     }
   }
 
-  void _toggleEditing() {
+  Future<void> _pickImage() async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      final pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        setState(() {
+          _image = File(pickedImage.path);
+        });
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setString('profileImage', pickedImage.path);
+      }
+    } else if (status.isPermanentlyDenied) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Permission Required'),
+          content: Text('Please grant access to the device\'s storage to pick an image.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                openAppSettings();
+              },
+              child: Text('Open Settings'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancel'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Permission Denied'),
+          content: Text('Access to the device\'s storage was denied.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  void _toggleEditing() async {
+    if (_isEditing) {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('profileName', _profileNameController.text);
+    }
     setState(() {
       _isEditing = !_isEditing;
     });
   }
 
   @override
-  Widget build(BuildContext context) {
-    final profileName = _isEditing ? _profileNameController.text : "";
+  void initState() {
+    super.initState();
+    _loadProfileImage();
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Settings'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: _pickImage,
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundImage: _image != null ? FileImage(_image!) : null,
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              _isEditing
-                  ? TextFormField(
-                controller: _profileNameController,
-                decoration: InputDecoration(
-                  labelText: 'Profile Name',
-                  prefixIcon: Icon(Icons.person),
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.check),
-                    onPressed: _toggleEditing,
-                  ),
-                  border: OutlineInputBorder(),
-                ),
-              )
-                  : Row(
+  Future<void> _loadProfileImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final profileImage = prefs.getString('profileImage');
+    if (profileImage != null) {
+      setState(() {
+        _image = File(profileImage);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final profileName = _isEditing ? _profileNameController.text : 'profileName';
+
+    return FutureBuilder<SharedPreferences>(
+      future: SharedPreferences.getInstance(),
+      builder: (context, snapshot) {
+        final prefs = snapshot.data;
+        final storedProfileImage = prefs?.getString('profileImage');
+
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Settings'),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+          body: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: Text(
-                      profileName,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  GestureDetector(
+                    onTap: _requestPermissions,
+                    child: CircleAvatar(
+                      radius: 75,
+                      backgroundImage: _image != null
+                          ? FileImage(_image!)
+                          : storedProfileImage != null
+                          ? FileImage(File(storedProfileImage))
+                          : null,
                     ),
                   ),
-                  IconButton(
-                    icon: Icon(Icons.edit),
-                    onPressed: _toggleEditing,
+                  const SizedBox(height: 16.0),
+                  _isEditing
+                      ? TextFormField(
+                    controller: _profileNameController,
+                    decoration: InputDecoration(
+                      labelText: 'Profile Name',
+                      prefixIcon: const Icon(Icons.person),
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.check),
+                        onPressed: _toggleEditing,
+                      ),
+                      border: const OutlineInputBorder(),
+                    ),
+                  )
+                      : FutureBuilder<SharedPreferences>(
+                    future: SharedPreferences.getInstance(),
+                    builder: (context, snapshot) {
+                      final prefs = snapshot.data;
+                      final storedProfileName =
+                          prefs?.getString('profileName') ?? '';
+
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const SizedBox(width: 50),
+                          Center(
+                            child: Text(
+                              storedProfileName,
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+
+                          IconButton(
+                            icon: const Icon(
+                              Icons.edit,
+                              size: 20,
+                            ),
+                            onPressed: _toggleEditing,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 15.0),
+                  const SizedBox(height: 15.0),
+                  const Text(
+                    'General',
+                    style: TextStyle(
+                      color: ColorsFrave.subtitle,
+                      fontSize: 15,
+                    ),
+                  ),
+                  const SizedBox(height: 10.0),
+                  Card(
+                    color: Theme.of(context).cardTheme.color,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.security),
+                          title: const Text('Security'),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              routeFade(page: const HomeSecurityScreen()),
+                            );
+                          },
+                        ),
+                        const Divider(
+                          thickness: 0.2,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.info),
+                          title: const Text('About'),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              routeFade(page: const HomeAboutScreen()),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 15.0),
+                  const Text(
+                    'More',
+                    style: TextStyle(
+                      color: Color(0xff6a6570),
+                      fontSize: 15,
+                    ),
+                  ),
+                  const SizedBox(height: 8.0),
+                  Card(
+                    color: Theme.of(context).cardTheme.color,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Column(
+                      children: [
+                        ItemModalSetting(
+                          text: 'App version',
+                          icon: FontAwesomeIcons.info,
+                          onTap: () {},
+                          isVersion: true,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      backgroundColor: Theme.of(context).cardTheme.color,
+                    ),
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const InitialScreen(),
+                        ),
+                            (_) => false,
+                      );
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.arrowRightFromBracket,
+                          color: Colors.red,
+                          size: 20,
+                        ),
+                        SizedBox(width: 5.0),
+                        Text(
+                          'Log out',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 15.0),
-              const SizedBox(height: 15.0),
-              const Text(
-                'General',
-                style: TextStyle(
-                  color: ColorsFrave.subtitle,
-                  fontSize: 15,
-                ),
-              ),
-              const SizedBox(height: 10.0),
-              Card(
-                color: Theme.of(context).cardTheme.color,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(Icons.security),
-                      title: const Text('Security'),
-                      onTap: () {
-                        Navigator.pop(context);
-                        // Navigate to the security screen
-                      },
-                    ),
-                    const Divider(
-                      thickness: 0.2,
-                      color: Colors.white,
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.info),
-                      title: const Text('About'),
-                      onTap: () {
-                        Navigator.pop(context);
-                        // Navigate to the about screen
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 15.0),
-              const Text(
-                'More',
-                style: TextStyle(
-                  color: Color(0xff6a6570),
-                  fontSize: 15,
-                ),
-              ),
-              const SizedBox(height: 8.0),
-              Card(
-                color: Theme.of(context).cardTheme.color,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(Icons.info),
-                      title: const Text('App version'),
-                      onTap: () {
-                        // Handle app version tap
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20.0),
-              TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  backgroundColor: Theme.of(context).cardTheme.color,
-                ),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => InitialScreen(),
-                    ),
-                        (_) => false,
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.arrow_right,
-                      color: Colors.red,
-                      size: 20,
-                    ),
-                    SizedBox(width: 10.0),
-                    Text(
-                      'Log out',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
-

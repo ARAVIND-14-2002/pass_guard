@@ -800,14 +800,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.27"
-  path_provider_extention:
-    dependency: "direct main"
-    description:
-      name: path_provider_extention
-      sha256: a19d9249967ef065d91d52512afc12ef9d92d6cee5ba327ad33769852eb50611
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.3"
   path_provider_foundation:
     dependency: transitive
     description:

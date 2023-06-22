@@ -108,6 +108,7 @@ class InitialScreen extends StatelessWidget {
                                   }
                                 },
                               ),
+
                               ItemMenu(
                                 icon: FontAwesomeIcons.rightToBracket,
                                 title: 'Log In',
@@ -121,6 +122,7 @@ class InitialScreen extends StatelessWidget {
                                   }
                                 },
                               ),
+
                               ItemMenu(
                                 icon: FontAwesomeIcons.lock,
                                 title: 'Delete',

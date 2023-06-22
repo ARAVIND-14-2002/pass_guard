@@ -61,21 +61,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Permission Required'),
-          content: Text('Please grant access to the device\'s storage to pick an image.'),
+          title: const Text('Permission Required'),
+          content: const Text('Please grant access to the device\'s storage to pick an image.'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 openAppSettings();
               },
-              child: Text('Open Settings'),
+              child: const Text('Open Settings'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
           ],
         ),
@@ -84,14 +84,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Permission Denied'),
-          content: Text('Access to the device\'s storage was denied.'),
+          title: const Text('Permission Denied'),
+          content: const Text('Access to the device\'s storage was denied.'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -153,13 +153,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   GestureDetector(
                     onTap: _requestPermissions,
-                    child: CircleAvatar(
-                      radius: 75,
-                      backgroundImage: _image != null
-                          ? FileImage(_image!)
-                          : storedProfileImage != null
-                          ? FileImage(File(storedProfileImage))
-                          : null,
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: 3,
+                          style: BorderStyle.solid,
+                          color: Colors.transparent, // Set border color to transparent
+                        ),
+                        gradient: const LinearGradient(
+                          colors: [
+                            Colors.purple,
+                            Colors.pink,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                      child: CircleAvatar(
+                        radius: 75,
+                        backgroundImage: _image != null
+                            ? FileImage(_image!)
+                            : storedProfileImage != null
+                            ? FileImage(File(storedProfileImage))
+                            : null,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16.0),

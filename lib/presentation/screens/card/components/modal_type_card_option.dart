@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pass_guard/data/type_card/type_card_model.dart';
 import 'package:pass_guard/domain/blocs/blocs.dart';
 import 'package:pass_guard/presentation/screens/home/components/item_option_type.dart';
+import 'package:pass_guard/presentation/themes/themes.dart';
 
 void modalTypeCardOption(BuildContext context) {
 
@@ -32,7 +33,7 @@ void modalTypeCardOption(BuildContext context) {
           Container(
             height: 400,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: ColorsFrave.primary,
               borderRadius: BorderRadius.circular(16.0)
             ),
             child: Padding(

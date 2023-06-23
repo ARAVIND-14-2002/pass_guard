@@ -107,7 +107,7 @@ class _AddNotepadScreenState extends State<AddNotepadScreen> {
                 cursorHeight: 28,
                 cursorWidth: 1.5,
                 cursorColor: ColorsFrave.primary,
-                style: GoogleFonts.inter(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),
+                style: GoogleFonts.inter(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   errorBorder: InputBorder.none,

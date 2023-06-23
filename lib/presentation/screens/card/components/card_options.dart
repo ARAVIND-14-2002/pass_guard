@@ -17,7 +17,7 @@ class CardOptions extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
-        color: const Color(0xffF3F1ED)
+        color: const Color(0xff676767)
       ),
       child: Row(
         children: [
@@ -42,7 +42,7 @@ class CardOptions extends StatelessWidget {
           Container(
             height: 25,
             width: 2,
-            color: Colors.grey.shade300,
+            color: Colors.black87,
           ),
           GestureDetector(
             onTap: () {

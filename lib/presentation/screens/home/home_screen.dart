@@ -12,6 +12,7 @@ import 'package:pass_guard/presentation/screens/home/components/modal_bottom_typ
 import 'package:pass_guard/presentation/screens/home/components/settings_screen.dart';
 import 'package:pass_guard/presentation/screens/home/components/recentrly_added.dart';
 import 'package:pass_guard/presentation/screens/passwords/modal_add_password_home.dart';
+import 'package:pass_guard/presentation/screens/security/home_security_screen.dart';
 import 'package:pass_guard/presentation/screens/security/import_export.dart';
 import 'package:pass_guard/presentation/themes/themes.dart';
 
@@ -199,11 +200,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => SettingsScreen()),
+                    routeFade(page: const HomeSecurityScreen()),
                   );
                 },
-                icon: const Icon(
-                  FontAwesomeIcons.home,
+                icon: const Icon(Icons.security,
+                  size: 30,
                   color: Colors.white,
                 ),
               ),
@@ -212,11 +213,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => ImportExport()),
+                    MaterialPageRoute(builder: (_) => SettingsScreen()),
                   );
                 },
-                icon: const Icon(
-                  FontAwesomeIcons.download,
+                icon: const Icon(Icons.person,
+                  size: 30,
                   color: Colors.white,
                 ),
               ),

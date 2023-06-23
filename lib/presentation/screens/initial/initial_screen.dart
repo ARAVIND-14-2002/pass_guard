@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:pass_guard/domain/blocs/blocs.dart';
 import 'package:pass_guard/presentation/components/animation_route.dart';
 import 'package:pass_guard/presentation/components/text_custom.dart';
@@ -41,7 +42,7 @@ class InitialScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 0.0),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextCustom(
@@ -60,26 +61,26 @@ class InitialScreen extends StatelessWidget {
                         return Container(
                           padding: const EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
                             borderRadius: BorderRadius.circular(10.0),
                             color: ColorsFrave.primary.withOpacity(0.5),
                           ),
                           child: Row(
                             children: [
-                              CircleAvatar(
-                                radius: 20,
-                                child: Icon(
-                                  state.existAccount ? FontAwesomeIcons.user : FontAwesomeIcons.solidFaceSadTear,
-                                  size: 15,
-                                  color: Colors.white,
-                                ),
+                              Icon(
+                                state.existAccount
+                                    ? FontAwesomeIcons.smile
+                                    : FontAwesomeIcons.solidFaceGrin,
+                                size: 30,
+                                color: Colors.white,
                               ),
                               const SizedBox(width: 10.0),
                               TextCustom(
-                                text: state.existAccount ? 'Main Account' : 'No account',
+                                text: state.existAccount ? 'Good to See you Back!' : 'Hello there!!',
                                 isTitle: true,
                                 color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
                               ),
                             ],
                           ),
@@ -107,7 +108,9 @@ class InitialScreen extends StatelessWidget {
                                     Navigator.push(context, routeFade(page: const CreateAccountScreen()));
                                   }
                                 },
-                              ),
+                              ).wrapContainerDecoration(),
+
+                              SizedBox(height: 20), // Increase spacing between ItemMenu widgets
 
                               ItemMenu(
                                 icon: FontAwesomeIcons.rightToBracket,
@@ -121,26 +124,28 @@ class InitialScreen extends StatelessWidget {
                                     });
                                   }
                                 },
-                              ),
+                              ).wrapContainerDecoration(),
 
-                              ItemMenu(
-                                icon: FontAwesomeIcons.lock,
-                                title: 'Delete',
-                                isDisable: !state.existAccount,
-                                onTap: () {
-                                  if (state.existAccount) {
-                                    randomNumberBloc.add(GenerateRandomNumberCreateEvent());
-                                    Navigator.push(context, routeFade(page: const VerifyPasswordDeleteScreen())).then((_) {
-                                      authBloc.add(ClearAllNumbersEvent());
-                                    });
-                                  }
-                                },
-                              ),
+                              SizedBox(height: 20), // Increase spacing between ItemMenu widgets
+
+                              // ItemMenu(
+                              //   icon: FontAwesomeIcons.xmarkCircle,
+                              //   title: 'Delete',
+                              //   isDisable: !state.existAccount,
+                              //   onTap: () {
+                              //     if (state.existAccount) {
+                              //       randomNumberBloc.add(GenerateRandomNumberCreateEvent());
+                              //       Navigator.push(context, routeFade(page: const VerifyPasswordDeleteScreen())).then((_) {
+                              //         authBloc.add(ClearAllNumbersEvent());
+                              //       });
+                              //     }
+                              //   },
+                              // ).wrapContainerDecoration(),
                             ],
                           );
                         },
                       ),
-                      const SizedBox(height: 30.0),
+                      const SizedBox(height: 0.0),
                       // Row(
                       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //   children: [
@@ -175,6 +180,27 @@ class InitialScreen extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+extension ItemMenuExtension on ItemMenu {
+  Widget wrapContainerDecoration() {
+    return Container(
+      width: double.infinity, // Increase the width of the container
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white),
+        borderRadius: BorderRadius.circular(10.0),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.fromARGB(255, 1, 0, 41).withOpacity(0.5),
+            ColorsFrave.primary.withOpacity(0.4),
+          ],
+        ),
+      ),
+      child: this,
     );
   }
 }

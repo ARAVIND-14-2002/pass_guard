@@ -14,27 +14,27 @@ void modalBottomTypePassword(BuildContext context) {
     backgroundColor: Colors.transparent,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
     builder: (context) => Container(
-      height: 230,
-      margin: const EdgeInsets.only(left: 10.0, right: 10.0),
+      height: 170,
+      margin: const EdgeInsets.only(left: 0, right: 0),
       color: Colors.transparent,
       child: Column(
         children: [
           Container(
-            height: 6,
-            width: 55,
+            height: 5,
+            width: 100,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50.0),
+              borderRadius: BorderRadius.circular(10.0),
               color: Colors.white70
             ),
           ),
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 20),
           Container(
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
-              borderRadius: BorderRadius.circular(16.0)
+              borderRadius: BorderRadius.circular(.0)
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
               child: Column(
                 children: [                  
                   ItemOptionType(
@@ -54,15 +54,15 @@ void modalBottomTypePassword(BuildContext context) {
                     icon: const Icon(FontAwesomeIcons.creditCard, size: 17, color: Colors.orange),
                     title: 'New Card',
                   ),
-                  const Divider(height: 1),
-                  ItemOptionType(
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(context, routeFade(page: const NotepadHomeScreen()));
-                    },
-                    icon: const Icon(FontAwesomeIcons.fileLines, size: 17, color: Colors.green),
-                    title: 'Notepad',
-                  ),
+                  // const Divider(height: 1),
+                  // ItemOptionType(
+                  //   onTap: () {
+                  //     Navigator.pop(context);
+                  //     Navigator.push(context, routeFade(page: const NotepadHomeScreen()));
+                  //   },
+                  //   icon: const Icon(FontAwesomeIcons.fileLines, size: 17, color: Colors.green),
+                  //   title: 'Notepad',
+                  // ),
                 ],
               ),
             ),

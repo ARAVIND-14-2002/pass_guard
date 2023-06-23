@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:pass_guard/presentation/screens/about/privacy_policy_screen.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:flutter/material.dart';
@@ -245,20 +246,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     child: Column(
                       children: [
-                        ListTile(
-                          leading: const Icon(Icons.security),
-                          title: const Text('Security'),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              routeFade(page: const HomeSecurityScreen()),
-                            );
-                          },
-                        ),
-                        const Divider(
-                          thickness: 0.2,
-                          color: Colors.white,
-                        ),
+                        // ListTile(
+                        //   leading: const Icon(Icons.security),
+                        //   title: const Text('Security'),
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //       context,
+                        //       routeFade(page: const HomeSecurityScreen()),
+                        //     );
+                        //   },
+                        // ),
+                        // const Divider(
+                        //   thickness: 0.2,
+                        //   color: Colors.white,
+                        // ),
                         ListTile(
                           leading: const Icon(Icons.info),
                           title: const Text('About'),
@@ -269,6 +270,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             );
                           },
                         ),
+                       const Divider(
+                         thickness: 0.2,
+                          color: Colors.white,
+                      ),
+                        ListTile(
+                          leading: const Icon(Icons.info),
+                          title: const Text('Privacy Policy'),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              routeFade(page: const PrivacyPolicyScreen()),
+                            );
+                          },
+                        ),
+
                       ],
                     ),
                   ),

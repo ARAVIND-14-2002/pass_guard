@@ -8,6 +8,7 @@ import 'package:pass_guard/presentation/components/animation_route.dart';
 import 'package:pass_guard/presentation/screens/auth/login_screen.dart';
 import 'package:pass_guard/presentation/screens/home/home_screen.dart';
 import 'package:pass_guard/presentation/screens/initial/components/item_menu.dart';
+import 'package:pass_guard/presentation/themes/themes.dart';
 
 class Biometrics extends StatefulWidget {
   const Biometrics({Key? key}) : super(key: key);
@@ -39,15 +40,14 @@ class _BiometricsState extends State<Biometrics> {
       ),
       body: Column(
         children: <Widget>[
-
-            Text(
-              'Welcome to',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
-            ),
-            Text(
-              'PassGuard',
-              style: TextStyle(fontSize: 36, fontWeight: FontWeight.normal),
-            ),
+          Text(
+            'Welcome to',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
+          ),
+          Text(
+            'PassGuard',
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.normal),
+          ),
           Expanded(
             child: Align(
               alignment: Alignment.topCenter,
@@ -58,25 +58,26 @@ class _BiometricsState extends State<Biometrics> {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ItemMenu(
-                icon: FontAwesomeIcons.lock,
-                title: 'Enter Pin',
-
-                onTap: () {
-                  Navigator.push(context, routeFade(page: const LoginScreen()));
-                },
-              ),
-              ItemMenu(
-                icon: FontAwesomeIcons.fingerprint,
-                title: 'Biometrics',
-                onTap: _authenticate,
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: ItemMenu(
+              icon: FontAwesomeIcons.lock,
+              title: 'Number Lock',
+              onTap: () {
+                Navigator.push(context, routeFade(page: const LoginScreen()));
+              },
+            ).wrapContainerDecoration(),
           ),
-          const SizedBox(height: 50,)
+          SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: ItemMenu(
+              icon: FontAwesomeIcons.fingerprint,
+              title: 'Biometrics',
+              onTap: _authenticate,
+            ),
+          ).wrapContainerDecoration(),
+          const SizedBox(height: 50)
         ],
       ),
     );
@@ -119,5 +120,27 @@ class _BiometricsState extends State<Biometrics> {
     if (!mounted) {
       return;
     }
+  }
+}
+
+extension ItemMenuExtension on Widget {
+  Widget wrapContainerDecoration() {
+    return Container(
+      height: 60,
+      width: 375, // Increase the width of the container
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white),
+        borderRadius: BorderRadius.circular(10.0),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.fromARGB(255, 1, 0, 41).withOpacity(0.5),
+            ColorsFrave.primary.withOpacity(0.4),
+          ],
+        ),
+      ),
+      child: this,
+    );
   }
 }

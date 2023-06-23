@@ -11,7 +11,7 @@ void modalOptionNote(BuildContext context, int index) {
 
   showModalBottomSheet(
     context: context, 
-    barrierColor: Colors.black54,
+    barrierColor: Colors.white,
     backgroundColor: Colors.transparent,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
     builder: (context) => Container(

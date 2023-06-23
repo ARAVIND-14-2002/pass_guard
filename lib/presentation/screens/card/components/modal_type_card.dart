@@ -30,7 +30,7 @@ void modalTypeCard(BuildContext context) {
           const SizedBox(height: 10.0),
           Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.grey,
               borderRadius: BorderRadius.circular(16.0)
             ),
             child: Padding(

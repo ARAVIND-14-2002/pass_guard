@@ -27,7 +27,6 @@ class _HomeAboutScreenState extends State<HomeAboutScreen> {
   void _getImageDirectoryPath() async {
     final directory = await getApplicationDocumentsDirectory();
     imageDirectoryPath = directory.path;
-    print('Image directory path: $imageDirectoryPath');
   }
 
   void _handleImageTap() {
@@ -93,18 +92,18 @@ class _HomeAboutScreenState extends State<HomeAboutScreen> {
               fontWeight: FontWeight.bold,
               fontSize: 32,
               textAlign: TextAlign.center,
-              color: ColorsFrave.primary,
+              color: Colors.white,
             ),
             const SizedBox(height: 10.0),
             const TextCustom(
-              text: 'V 1.5.0',
+              text: 'V 1.0.0',
               color: Colors.grey,
               isTitle: true,
               fontWeight: FontWeight.bold,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10.0),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
             ),
             const SizedBox(height: 40.0),
@@ -128,7 +127,7 @@ class AnotherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Another Page'),
+        title: const Text('Why are you Here?'),
       ),
       body: ListView.builder(
         itemCount: capturedImages.length,
@@ -147,7 +146,7 @@ class AnotherPage extends StatelessWidget {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: HomeAboutScreen(),
   ));
 }

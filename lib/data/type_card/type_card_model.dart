@@ -8,6 +8,7 @@ class TypeCardModel {
   const TypeCardModel({required this.uid, required this.name, required this.icon});
 
   static final List<TypeCardModel> typeCardModel = [
+    const TypeCardModel(uid: 8, name: 'Rupay', icon: 'assets/logos/rupay.svg'),
     const TypeCardModel(uid: 1, name: 'Visa', icon: 'assets/logos/visa.svg'),
     const TypeCardModel(uid: 2, name: 'Mastercard', icon: 'assets/logos/mastercard.svg'),
     const TypeCardModel(uid: 3, name: 'Express', icon: 'assets/logos/amex-card.svg'),
@@ -36,6 +37,6 @@ class TypeCardColor {
     const TypeCardColor(uid: 6, color: 0xffE53935),
     const TypeCardColor(uid: 7, color: 0xff2DD797),
     const TypeCardColor(uid: 8, color: 0xff23272E),
-    const TypeCardColor(uid: 9, color: 0xDD000000),
+    const TypeCardColor(uid: 9, color: 0xff34521E),
   ];
 }

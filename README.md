@@ -1,16 +1,70 @@
-# pass_guard
+# Pass Guard
 
-Password Manager Application
+Password Manager Mini Project 
 
-## Getting Started
+[//]: # (## Table of Contents)
 
-This project is a starting point for a Flutter application.
+[//]: # ()
+[//]: # (- [Installation]&#40;#installation&#41;)
 
-A few resources to get you started if this is your first Flutter project:
+[//]: # (- [Usage]&#40;#usage&#41;)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+[//]: # (- [Features]&#40;#features&#41;)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[//]: # (- [Contributing]&#40;#contributing&#41;)
+
+[//]: # (- [License]&#40;#license&#41;)
+
+[//]: # ()
+[//]: # (## Installation)
+
+[//]: # ()
+[//]: # (Instructions on how to install and set up the project.)
+
+[//]: # ()
+[//]: # (## Usage)
+
+[//]: # ()
+[//]: # (Instructions on how to use the project or provide code examples.)
+
+[//]: # ()
+[//]: # (## Features)
+
+[//]: # ()
+[//]: # (List of key features or highlights of the project.)
+
+[//]: # ()
+[//]: # (## Contributing)
+
+[//]: # ()
+[//]: # (Guidelines on how to contribute to the project or how to set up a development environment.)
+
+[//]: # ()
+[//]: # (## License)
+
+[//]: # ()
+[//]: # (Information about the project's license.)
+
+## Screenshots
+
+![Screenshot 1]![](screenshots/initial screen.png)
+Initial Screen
+
+![Screenshot 2]![](screenshots/Login Screen.png)
+Login Screen
+
+![Screenshot 3]![](screenshots/homescreen.png)
+Home Screen
+
+![Screenshot 4]![](screenshots/profile.png)
+Profile
+
+![Screenshot 5]![](screenshots/securityscreen.png)
+Security Screen
+
+![Screenshot 6]![](screenshots/generatepassword.png)
+Generate Password
+
+
+![Screenshot 7]![](screenshots/backup.png)
+Backup data

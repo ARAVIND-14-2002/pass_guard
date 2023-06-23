@@ -192,39 +192,53 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomAppBar(
           shape: const CircularNotchedRectangle(),
           color: ColorsFrave.primary,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(width: 30),
-              IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    routeFade(page: const HomeSecurityScreen()),
-                  );
-                },
-                icon: const Icon(Icons.security,
-                  size: 30,
-                  color: Colors.white,
+          child: Container(
+            decoration: BoxDecoration(
+              // gradient: ColorsFrave.bottomAppBarGradient,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(context, routeFade(page: HomeScreen()), (route) => false);
+                  },
+                  icon: const Icon(
+                    Icons.home,
+                    size: 30,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 200),
-              IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => SettingsScreen()),
-                  );
-                },
-                icon: const Icon(Icons.person,
-                  size: 30,
-                  color: Colors.white,
+
+
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(context, routeFade(page: HomeSecurityScreen()), (route) => false);
+                  },
+                  icon: const Icon(
+                    Icons.security,
+                    size: 30,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 30),
-            ],
+
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(context, routeFade(page: SettingsScreen()), (route) => false);
+                  },
+                  icon: const Icon(
+                    Icons.person,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                ),
+
+              ],
+            ),
           ),
         ),
+
         floatingActionButton: FloatingActionButton(
           heroTag: 'add-password',
           backgroundColor: ColorsFrave.primary,
@@ -236,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
             modalBottomTypePassword(context);
           },
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }

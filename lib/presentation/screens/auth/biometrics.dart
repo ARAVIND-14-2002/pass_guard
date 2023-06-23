@@ -129,14 +129,13 @@ extension ItemMenuExtension on Widget {
       height: 60,
       width: 375, // Increase the width of the container
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.circular(10.0),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color.fromARGB(255, 1, 0, 41).withOpacity(0.5),
-            ColorsFrave.primary.withOpacity(0.4),
+            Colors.red,
+            Colors.purple,
           ],
         ),
       ),

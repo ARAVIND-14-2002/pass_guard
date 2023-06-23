@@ -4,11 +4,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pass_guard/domain/blocs/blocs.dart';
 import 'package:pass_guard/presentation/components/components.dart';
 import 'package:pass_guard/presentation/screens/delete/verify_password_delete_screen.dart';
+import 'package:pass_guard/presentation/screens/home/components/settings_screen.dart';
+import 'package:pass_guard/presentation/screens/home/home_screen.dart';
 import 'package:pass_guard/presentation/screens/passwords/generate_password_screen.dart';
 import 'package:pass_guard/presentation/screens/security/components/card_item_security.dart';
 import 'package:pass_guard/presentation/screens/security/import_export.dart';
 import 'package:pass_guard/presentation/screens/security/verify_pin_screen.dart';
 import 'package:pass_guard/domain/blocs/auth/auth_bloc.dart';
+import 'package:pass_guard/presentation/themes/themes.dart';
+
+import '../home/components/modal_bottom_type_password.dart';
 
 class HomeSecurityScreen extends StatefulWidget {
   const HomeSecurityScreen({Key? key}) : super(key: key);
@@ -16,7 +21,6 @@ class HomeSecurityScreen extends StatefulWidget {
   @override
   _HomeSecurityScreenState createState() => _HomeSecurityScreenState();
 }
-
 
 class _HomeSecurityScreenState extends State<HomeSecurityScreen> {
   late bool isBiometricEnabled;
@@ -29,10 +33,6 @@ class _HomeSecurityScreenState extends State<HomeSecurityScreen> {
     super.initState();
   }
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     final securityBloc = BlocProvider.of<SecurityBloc>(context);
@@ -41,124 +41,176 @@ class _HomeSecurityScreenState extends State<HomeSecurityScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        // centerTitle: true,
         title: const TextCustom(
           text: 'Security',
           color: Colors.white,
           isTitle: true,
-          fontSize: 17,
+          fontSize: 18,
           fontWeight: FontWeight.w600,
         ),
-        leading: IconButton(
-          splashRadius: 20,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 22),
-        ),
+        // leading: IconButton(
+        //   splashRadius: 20,
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        //   icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 22),
+        // ),
       ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  CardItemSecurity(
-                    title: 'Change PIN',
-                    prefixWidget: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                    icon: FontAwesomeIcons.key,
-                    onTap: () async {
-                      await Navigator.push(context, routeFade(page: const VerifyPinScreen()));
-                      securityBloc.add(ClearAllPinEvent());
-                    },
-                  ),
-                  CardItemSecurity(
-                    title: 'Enabled Biometric',
-                    prefixWidget: Switch(
-                      value: isBiometricEnabled,
-                      onChanged: (value) {
-                        setState(() {
-                          // isBiometricEnabled = value;
-                        });
-                      },
-                      activeTrackColor: Colors.white,
-                      activeColor: const Color.fromRGBO(36, 255, 0, 1),
-                      inactiveTrackColor: Colors.redAccent,
-                    ),
-                    icon: FontAwesomeIcons.fingerprint,
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Disable feature not Available'),
-                        ),
-                      );
-                    },
-                  ),
-                  CardItemSecurity(
-                    title: 'Enable Image-capture',
-                    prefixWidget: Switch(
-                      value: isImageCaptureEnabled,
-                      onChanged: (value) {
-                        setState(() {
-                          // isImageCaptureEnabled = value;
-                        });
-                      },
-                      activeTrackColor: Colors.white,
-                      activeColor: const Color.fromRGBO(36, 255, 0, 1),
-                      inactiveTrackColor: Colors.redAccent,
-                    ),
-                    icon: FontAwesomeIcons.camera,
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Disable feature not Available'),
-                        ),
-                      );
-                    },
-                  ),
-
-                  CardItemSecurity(
-                    title: 'Download Backup',
-                    prefixWidget: const Icon(Icons.arrow_forward_ios_rounded),
-                    icon: FontAwesomeIcons.fileExport,
-                    onTap: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        routeFade(page: ImportExport()),
-                            (route) => true, // Remove all previous routes from the stack
-                      );
-                    },
-                  ),
-
-                  CardItemSecurity(
-                    title: 'Password Generator',
-                    prefixWidget: const Icon(Icons.arrow_forward_ios_rounded),
-                    icon: FontAwesomeIcons.key,
-                    onTap: () {
-                      Navigator.push(context, routeFade(page: const GeneratePasswordScreen()));
-                    },
-                  ),
-
-
-                  // CardItemSecurity(
-                  //   title: 'Delete',
-                  //   prefixWidget: const Icon(Icons.arrow_forward_ios_rounded),
-                  //   icon: FontAwesomeIcons.lock,
-                  //   onTap: () {
-                  //     var state;
-                  //     if (state.existAccount) {
-                  //       randomNumberBloc.add(GenerateRandomNumberCreateEvent());
-                  //       Navigator.push(context, routeFade(page: const VerifyPasswordDeleteScreen())).then((_) {
-                  //         authBloc.add(ClearAllNumbersEvent());
-                  //       });
-                  //     }
-                  //   },
-                  // ),
-                ],
-              ),
+            SliverGrid.count(
+              crossAxisCount: 2,
+              childAspectRatio: 1.0,
+              children: [
+                buildSecurityCard(
+                  title: 'Change PIN',
+                  icon: FontAwesomeIcons.key,
+                  onTap: () async {
+                    await Navigator.push(context, routeFade(page: const VerifyPinScreen()));
+                    securityBloc.add(ClearAllPinEvent());
+                  },
+                ),
+                buildSecurityCard(
+                  title: 'Biometric',
+                  icon: FontAwesomeIcons.fingerprint,
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Biometrics Enabled'),
+                      ),
+                    );
+                  },
+                ),
+                buildSecurityCard(
+                  title: 'Image Capture',
+                  icon: FontAwesomeIcons.camera,
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Image capture Enabled'),
+                      ),
+                    );
+                  },
+                ),
+                buildSecurityCard(
+                  title: 'Download Backup',
+                  icon: FontAwesomeIcons.fileExport,
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      routeFade(page: ImportExport()),
+                          (route) => true,
+                    );
+                  },
+                ),
+                buildSecurityCard(
+                  title: 'Password Generator',
+                  icon: FontAwesomeIcons.key,
+                  onTap: () {
+                    Navigator.push(context, routeFade(page: const GeneratePasswordScreen()));
+                  },
+                ),
+              ],
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        color: ColorsFrave.primary,
+        child: Container(
+          decoration: BoxDecoration(
+            // gradient: ColorsFrave.bottomAppBarGradient,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+
+              IconButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(context, routeFade(page: HomeScreen()), (route) => false);
+                },
+                icon: const Icon(
+                  Icons.home,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ),
+
+              IconButton(
+                onPressed: () {
+                  // Navigator.push(
+                  //   context,
+                  //   routeFade(page: const HomeSecurityScreen()),
+                  // );
+                },
+                icon: const Icon(
+                  Icons.security,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ),
+
+
+
+              IconButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(context, routeFade(page: SettingsScreen()), (route) => false);
+                },
+                icon: const Icon(
+                  Icons.person,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildSecurityCard({
+    required String title,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: 150,
+          height: 150,
+          decoration: ShapeDecoration(
+            gradient: RadialGradient(
+              center: const Alignment(0.19, 0.49),
+              radius: 0.63,
+              colors: [const Color(0x4C8F02FF), Colors.white.withOpacity(0)],
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 8),
+              Icon(
+                icon,
+                size: 40,
+                color: Colors.white,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: const TextStyle(color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );

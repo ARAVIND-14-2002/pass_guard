@@ -33,8 +33,8 @@ class ItemMenu extends StatelessWidget {
   Widget _buildRegularItemMenu() {
     return InkWell(
       borderRadius: BorderRadius.circular(50.0),
-      splashColor: Colors.white,
-      highlightColor: Colors.white,
+      // splashColor: Colors.white,
+      // highlightColor: Colors.white,
       onTap: isDisable ? null : onTap,
       child: Container(
         alignment: Alignment.center,

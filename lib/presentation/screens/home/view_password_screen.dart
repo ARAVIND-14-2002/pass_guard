@@ -7,6 +7,9 @@ import 'package:pass_guard/domain/blocs/blocs.dart';
 import 'package:pass_guard/domain/models/password_model.dart';
 import 'package:pass_guard/presentation/components/components.dart';
 import 'package:pass_guard/presentation/helpers/modal_clipboard.dart';
+import 'package:pass_guard/presentation/screens/home/components/settings_screen.dart';
+import 'package:pass_guard/presentation/screens/home/home_screen.dart';
+import 'package:pass_guard/presentation/screens/security/home_security_screen.dart';
 import 'package:pass_guard/presentation/themes/themes.dart';
 
 class ViewPasswordScreen extends StatefulWidget {
@@ -28,6 +31,7 @@ class _ViewPasswordScreenState extends State<ViewPasswordScreen> {
   late final PasswordBloc passwordBloc;
   late final HomeBloc homeBloc;
   bool isPasswordVisible = false;
+  bool isEditing = false;
 
   @override
   void initState() {
@@ -61,19 +65,19 @@ class _ViewPasswordScreenState extends State<ViewPasswordScreen> {
           fontWeight: FontWeight.w600,
         ),
         leading: IconButton(
-            splashRadius: 20,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 19.0)),
+          splashRadius: 20,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 19.0),
+        ),
       ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -86,103 +90,50 @@ class _ViewPasswordScreenState extends State<ViewPasswordScreen> {
                           isTitle: true,
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
-                          color: ColorsFrave.primary,
-                        )
+                          color: Colors.white,
+                        ),
                       ],
                     ),
                     const SizedBox(height: 30.0),
-                    const TextCustom(
-                      text: 'Website/App',
-                      isTitle: true,
-                      fontWeight: FontWeight.w600,
-                      color: ColorsFrave.primary,
-                    ),
-                    const SizedBox(height: 5.0),
-                    TextFormField(
+                    buildEditableTextFormField(
+                      title: 'Website/App',
+                      color: Colors.white,
                       controller: _nicknameController,
-                      style: GoogleFonts.poppins(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey),
-                      cursorColor: ColorsFrave.primary,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Enter Nickname',
-                          hintStyle: GoogleFonts.poppins(color: Colors.grey)),
+                      isEditing: isEditing,
                     ),
                     const SizedBox(height: 15.0),
-                    const TextCustom(
-                      text: 'Email',
-                      isTitle: true,
-                      fontWeight: FontWeight.w600,
-                      color: ColorsFrave.primary,
-                    ),
-                    TextFormField(
+                    buildEditableTextFormField(
+                      color: Colors.white,
+                      title: 'Email',
                       controller: _emailController,
-                      style: GoogleFonts.poppins(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey),
-                      cursorColor: ColorsFrave.primary,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Enter Email',
-                          hintStyle: GoogleFonts.poppins(color: Colors.grey)),
+                      isEditing: isEditing,
                     ),
                     const SizedBox(height: 15.0),
-                    const TextCustom(
-                      text: 'Password',
-                      isTitle: true,
-                      fontWeight: FontWeight.w600,
-                      color: ColorsFrave.primary,
-                    ),
-                    TextFormField(
+                    buildEditableTextFormField(
+                      title: 'Password',
+                      color: Colors.white,
                       controller: _passwordController,
+                      isEditing: isEditing,
                       obscureText: !isPasswordVisible,
-                      readOnly: true,
-                      style: GoogleFonts.poppins(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey),
-                      cursorColor: ColorsFrave.primary,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Enter password or generate password',
-                        hintStyle: GoogleFonts.poppins(color: Colors.grey),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isPasswordVisible = !isPasswordVisible;
-                            });
-                          },
-                          icon: Icon(
-                            isPasswordVisible
-                                ? FontAwesomeIcons.eyeSlash
-                                : FontAwesomeIcons.eye,
-                            color: Colors.grey,
-                          ),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isPasswordVisible = !isPasswordVisible;
+                          });
+                        },
+                        icon: Icon(
+                          isPasswordVisible ? FontAwesomeIcons.eyeSlash : FontAwesomeIcons.eye,
+                          color: Colors.white,
                         ),
                       ),
                     ),
                     if (widget.password.type == 1) ...[
                       const SizedBox(height: 15.0),
-                      TextCustom(
-                        text: 'Website',
-                        isTitle: true,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.purple.shade600,
-                      ),
-                      TextFormField(
+                      buildEditableTextFormField(
+                        title: 'Website',
+                        color: Colors.white,
                         controller: _websiteController,
-                        style: GoogleFonts.poppins(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            color: ColorsFrave.primary),
-                        cursorColor: ColorsFrave.primary,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Enter website',
-                            hintStyle: GoogleFonts.poppins(color: Colors.grey)),
+                        isEditing: isEditing,
                       ),
                     ],
                     const SizedBox(height: 10.0),
@@ -202,10 +153,10 @@ class _ViewPasswordScreenState extends State<ViewPasswordScreen> {
                             SizedBox(width: 10.0),
                             TextCustom(
                               text: 'Copy',
-                              color: Colors.grey,
+                              color: Colors.white,
                               isTitle: true,
                               fontWeight: FontWeight.w600,
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -222,15 +173,14 @@ class _ViewPasswordScreenState extends State<ViewPasswordScreen> {
                         width: double.infinity,
                         child: Row(
                           children: [
-                            Icon(FontAwesomeIcons.trashCan,
-                                color: Colors.red.shade600),
+                            Icon(FontAwesomeIcons.trashCan, color: Colors.red.shade600),
                             const SizedBox(width: 10.0),
                             TextCustom(
                               text: 'Delete',
                               isTitle: true,
                               fontWeight: FontWeight.w600,
                               color: Colors.red.shade600,
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -238,10 +188,113 @@ class _ViewPasswordScreenState extends State<ViewPasswordScreen> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        color: ColorsFrave.primary,
+        child: Container(
+          decoration: BoxDecoration(
+            // gradient: ColorsFrave.bottomAppBarGradient,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(context, routeFade(page: HomeScreen()), (route) => false);
+                },
+                icon: const Icon(
+                  Icons.home,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(context, routeFade(page: HomeSecurityScreen()), (route) => false);
+                },
+                icon: const Icon(
+                  Icons.security,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(context, routeFade(page: SettingsScreen()), (route) => false);
+                },
+                icon: const Icon(
+                  Icons.person,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   heroTag: 'edit-password',
+      //   backgroundColor: ColorsFrave.primary,
+      //   shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.circular(30.0),
+      //   ),
+      //   child: Icon(isEditing ? FontAwesomeIcons.save : FontAwesomeIcons.edit, color: Colors.white),
+      //   onPressed: () {
+      //     setState(() {
+      //       isEditing = !isEditing;
+      //     });
+      //   },
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+    );
+  }
+
+  Widget buildEditableTextFormField({
+    required String title,
+    required Color color,
+    required TextEditingController controller,
+    required bool isEditing,
+    bool obscureText = false,
+    Widget? suffixIcon,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const TextCustom(
+          text: 'Website/App',
+          isTitle: true,
+          fontWeight: FontWeight.w600,
+          color: ColorsFrave.primary,
+        ),
+        const SizedBox(height: 5.0),
+        Container(
+          decoration: BoxDecoration(
+            color: isEditing ? Colors.grey.shade200 : null,
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: TextFormField(
+            controller: controller,
+            readOnly: !isEditing,
+            obscureText: obscureText,
+            style: GoogleFonts.poppins(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey,
+            ),
+            cursorColor: ColorsFrave.primary,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Enter $title',
+              hintStyle: GoogleFonts.poppins(color: Colors.grey),
+              suffixIcon: suffixIcon,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

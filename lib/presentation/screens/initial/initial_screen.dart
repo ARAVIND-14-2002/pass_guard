@@ -35,149 +35,117 @@ class InitialScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 60.0, bottom: 20.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 0.0),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextCustom(
-                          text: 'PassGuard',
-                          isTitle: true,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                        Icon(FontAwesomeIcons.lock, color: Colors.white),
-                      ],
-                    ),
-                    const SizedBox(height: 40.0),
-                    BlocBuilder<AuthBloc, AuthState>(
-                      builder: (_, state) {
-                        return Container(
-                          padding: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: ColorsFrave.primary.withOpacity(0.5),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                state.existAccount
-                                    ? FontAwesomeIcons.smile
-                                    : FontAwesomeIcons.solidFaceGrin,
-                                size: 30,
-                                color: Colors.white,
-                              ),
-                              const SizedBox(width: 10.0),
-                              TextCustom(
-                                text: state.existAccount ? 'Good to See you Back!' : 'Hello there!!',
-                                isTitle: true,
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    )
-                  ],
+                const SizedBox(height: 35),
+                const Text(
+                  'Welcome to',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Column(
-                    children: [
-                      BlocBuilder<AuthBloc, AuthState>(
-                        builder: (context, state) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ItemMenu(
-                                icon: FontAwesomeIcons.circlePlus,
-                                title: 'Create',
-                                isDisable: state.existAccount,
-                                onTap: () {
-                                  if (!state.existAccount) {
-                                    randomNumberBloc.add(GenerateRandomNumberCreateEvent());
-                                    Navigator.push(context, routeFade(page: const CreateAccountScreen()));
-                                  }
-                                },
-                              ).wrapContainerDecoration(),
+                const Text(
+                  'PassGuard',
+                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.normal),
+                ),
+                Expanded(
 
-                              SizedBox(height: 20), // Increase spacing between ItemMenu widgets
-
-                              ItemMenu(
-                                icon: FontAwesomeIcons.rightToBracket,
-                                title: 'Log In',
-                                isDisable: !state.existAccount,
-                                onTap: () async {
-                                  if(state.existAccount){
-                                    randomNumberBloc.add(GenerateRandomNumberCreateEvent());
-                                    Navigator.push(context, routeFade(page: const Biometrics())).then((_) {
-                                      authBloc.add(ClearAllNumbersEvent());
-                                    });
-                                  }
-                                },
-                              ).wrapContainerDecoration(),
-
-                              SizedBox(height: 20), // Increase spacing between ItemMenu widgets
-
-                              // ItemMenu(
-                              //   icon: FontAwesomeIcons.xmarkCircle,
-                              //   title: 'Delete',
-                              //   isDisable: !state.existAccount,
-                              //   onTap: () {
-                              //     if (state.existAccount) {
-                              //       randomNumberBloc.add(GenerateRandomNumberCreateEvent());
-                              //       Navigator.push(context, routeFade(page: const VerifyPasswordDeleteScreen())).then((_) {
-                              //         authBloc.add(ClearAllNumbersEvent());
-                              //       });
-                              //     }
-                              //   },
-                              // ).wrapContainerDecoration(),
-                            ],
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 0.0),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //   children: [
-                      //     ItemMenu(
-                      //       icon: FontAwesomeIcons.paperPlane,
-                      //       title: 'Privacy Policy',
-                      //       onTap: () {
-                      //         Navigator.push(context, routeFade(page: const PrivacyPolicyScreen()));
-                      //       },
-                      //     ),
-                      //     ItemMenu(
-                      //       icon: FontAwesomeIcons.barcode,
-                      //       title: 'About',
-                      //       onTap: () {
-                      //         Navigator.push(context, routeFade(page: HomeAboutScreen()));
-                      //       },
-                      //     ),
-                      //     ItemMenu(
-                      //       icon: FontAwesomeIcons.key,
-                      //       title: 'Generate',
-                      //       onTap: () {
-                      //         Navigator.push(context, routeFade(page: const GeneratePasswordScreen()));
-                      //       },
-                      //     ),
-                      //   ],
-                      // ),
-                    ],
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Image.asset(
+                      'assets/img/logo-white.png',
+                      fit: BoxFit.cover,
+                      height: 100, // Adjust the height of the image
+                    ),
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const SizedBox(height: 200),
+                        ItemMenu(
+                          icon: FontAwesomeIcons.circlePlus,
+                          title: 'Create',
+                          isDisable: state.existAccount,
+                          onTap: () {
+                            if (!state.existAccount) {
+                              randomNumberBloc.add(GenerateRandomNumberCreateEvent());
+                              Navigator.push(context, routeFade(page: const CreateAccountScreen()));
+                            }
+                          },
+                        ).wrapContainerDecoration(),
+                        const SizedBox(height: 20),
+                        ItemMenu(
+                          icon: FontAwesomeIcons.rightToBracket,
+                          title: 'Log In',
+                          isDisable: !state.existAccount,
+                          onTap: () async {
+                            if (state.existAccount) {
+                              randomNumberBloc.add(GenerateRandomNumberCreateEvent());
+                              Navigator.push(context, routeFade(page: const Biometrics())).then((_) {
+                                authBloc.add(ClearAllNumbersEvent());
+                              });
+                            }
+                          },
+                        ).wrapContainerDecoration(),
+                        const SizedBox(height: 20),
+                        // ItemMenu(
+                        //   icon: FontAwesomeIcons.xmarkCircle,
+                        //   title: 'Delete',
+                        //   isDisable: !state.existAccount,
+                        //   onTap: () {
+                        //     if (state.existAccount) {
+                        //       randomNumberBloc.add(GenerateRandomNumberCreateEvent());
+                        //       Navigator.push(context, routeFade(page: const VerifyPasswordDeleteScreen())).then((_) {
+                        //         authBloc.add(ClearAllNumbersEvent());
+                        //       });
+                        //     }
+                        //   },
+                        // ).wrapContainerDecoration(),
+                      ],
+                    );
+                  },
+                ),
+                const SizedBox(height: 20),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     ItemMenu(
+                //       icon: FontAwesomeIcons.paperPlane,
+                //       title: 'Privacy Policy',
+                //       onTap: () {
+                //         Navigator.push(context, routeFade(page: const PrivacyPolicyScreen()));
+                //       },
+                //     ),
+                //     ItemMenu(
+                //       icon: FontAwesomeIcons.barcode,
+                //       title: 'About',
+                //       onTap: () {
+                //         Navigator.push(context, routeFade(page: HomeAboutScreen()));
+                //       },
+                //     ),
+                //     ItemMenu(
+                //       icon: FontAwesomeIcons.key,
+                //       title: 'Generate',
+                //       onTap: () {
+                //         Navigator.push(context, routeFade(page: const GeneratePasswordScreen()));
+                //       },
+                //     ),
+                //   ],
+                // ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -187,16 +155,15 @@ class InitialScreen extends StatelessWidget {
 extension ItemMenuExtension on ItemMenu {
   Widget wrapContainerDecoration() {
     return Container(
-      width: double.infinity, // Increase the width of the container
+      width: 200, // Increase the width of the container
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.circular(10.0),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color.fromARGB(255, 1, 0, 41).withOpacity(0.5),
-            ColorsFrave.primary.withOpacity(0.4),
+            Colors.red,
+            Colors.purple,
           ],
         ),
       ),

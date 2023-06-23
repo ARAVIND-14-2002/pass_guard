@@ -6,32 +6,16 @@ Password Manager Mini Project
 
 <div align="center">
   <img src="screenshots/initialscreen.png" alt="Initial Screen" width="300">
-  <p>Initial Screen</p>
-</div>
-
-<div align="center">
   <img src="screenshots/LoginScreen.png" alt="Login Screen" width="300">
-  <p>Login Screen</p>
-</div>
-
-<div align="center">
   <img src="screenshots/homescreen.png" alt="Home Screen" width="300">
-  <p>Home Screen</p>
+  <p>Initial Screen - Login Screen - Home Screen</p>
 </div>
 
 <div align="center">
   <img src="screenshots/profile.png" alt="Profile" width="300">
-  <p>Profile</p>
-</div>
-
-<div align="center">
   <img src="screenshots/securityscreen.png" alt="Security Screen" width="300">
-  <p>Security Screen</p>
-</div>
-
-<div align="center">
   <img src="screenshots/generatepassword.png" alt="Generate Password" width="300">
-  <p>Generate Password</p>
+  <p>Profile - Security Screen - Generate Password</p>
 </div>
 
 <div align="center">

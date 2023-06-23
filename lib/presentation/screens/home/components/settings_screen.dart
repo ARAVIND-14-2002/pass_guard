@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:pass_guard/presentation/components/text_custom.dart';
 import 'package:pass_guard/presentation/screens/about/privacy_policy_screen.dart';
+import 'package:pass_guard/presentation/screens/home/home_screen.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:flutter/material.dart';
@@ -138,13 +140,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Settings'),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+            // centerTitle: true,
+            title: const TextCustom(
+            text: 'Profile',
+            color: Colors.white,
+            isTitle: true,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            // leading: IconButton(
+            //   icon: const Icon(Icons.arrow_back),
+            //   onPressed: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
+          ),
           ),
           body: SingleChildScrollView(
             child: Container(
@@ -336,7 +345,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         Icon(
                           FontAwesomeIcons.arrowRightFromBracket,
                           color: Colors.red,
-                          size: 20,
+                          size: 30,
                         ),
                         SizedBox(width: 5.0),
                         Text(
@@ -353,6 +362,60 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
           ),
+
+          bottomNavigationBar: BottomAppBar(
+            shape: const CircularNotchedRectangle(),
+            color: ColorsFrave.primary,
+            child: Container(
+              decoration: BoxDecoration(
+                // gradient: ColorsFrave.bottomAppBarGradient,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(context, routeFade(page: HomeScreen()), (route) => false);
+                    },
+                    icon: const Icon(
+                      Icons.home,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(context, routeFade(page: HomeSecurityScreen()), (route) => false);
+                    },
+                    icon: const Icon(
+                      Icons.security,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+
+                  IconButton(
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (_) => SettingsScreen()),
+                      // );
+                    },
+                    icon: const Icon(
+                      Icons.person,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
         );
       },
     );

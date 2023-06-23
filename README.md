@@ -1,70 +1,40 @@
 # Pass Guard
 
-Password Manager Mini Project 
-
-[//]: # (## Table of Contents)
-
-[//]: # ()
-[//]: # (- [Installation]&#40;#installation&#41;)
-
-[//]: # (- [Usage]&#40;#usage&#41;)
-
-[//]: # (- [Features]&#40;#features&#41;)
-
-[//]: # (- [Contributing]&#40;#contributing&#41;)
-
-[//]: # (- [License]&#40;#license&#41;)
-
-[//]: # ()
-[//]: # (## Installation)
-
-[//]: # ()
-[//]: # (Instructions on how to install and set up the project.)
-
-[//]: # ()
-[//]: # (## Usage)
-
-[//]: # ()
-[//]: # (Instructions on how to use the project or provide code examples.)
-
-[//]: # ()
-[//]: # (## Features)
-
-[//]: # ()
-[//]: # (List of key features or highlights of the project.)
-
-[//]: # ()
-[//]: # (## Contributing)
-
-[//]: # ()
-[//]: # (Guidelines on how to contribute to the project or how to set up a development environment.)
-
-[//]: # ()
-[//]: # (## License)
-
-[//]: # ()
-[//]: # (Information about the project's license.)
+Password Manager Mini Project
 
 ## Screenshots
 
-![Screenshot 1]![](screenshots/initialscreen.png)
-Initial Screen
+<div align="center">
+  <img src="screenshots/initialscreen.png" alt="Initial Screen" width="300">
+  <p>Initial Screen</p>
+</div>
 
-![Screenshot 2]![](screenshots/LoginScreen.png)
-Login Screen
+<div align="center">
+  <img src="screenshots/LoginScreen.png" alt="Login Screen" width="300">
+  <p>Login Screen</p>
+</div>
 
-![Screenshot 3]![](screenshots/homescreen.png)
-Home Screen
+<div align="center">
+  <img src="screenshots/homescreen.png" alt="Home Screen" width="300">
+  <p>Home Screen</p>
+</div>
 
-![Screenshot 4]![](screenshots/profile.png)
-Profile
+<div align="center">
+  <img src="screenshots/profile.png" alt="Profile" width="300">
+  <p>Profile</p>
+</div>
 
-![Screenshot 5]![](screenshots/securityscreen.png)
-Security Screen
+<div align="center">
+  <img src="screenshots/securityscreen.png" alt="Security Screen" width="300">
+  <p>Security Screen</p>
+</div>
 
-![Screenshot 6]![](screenshots/generatepassword.png)
-Generate Password
+<div align="center">
+  <img src="screenshots/generatepassword.png" alt="Generate Password" width="300">
+  <p>Generate Password</p>
+</div>
 
-
-![Screenshot 7]![](screenshots/backup.png)
-Backup data
+<div align="center">
+  <img src="screenshots/backup.png" alt="Backup data" width="300">
+  <p>Backup data</p>
+</div>

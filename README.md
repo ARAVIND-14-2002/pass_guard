@@ -47,10 +47,10 @@ Password Manager Mini Project
 
 ## Screenshots
 
-![Screenshot 1]![](screenshots/initial screen.png)
+![Screenshot 1]![](screenshots/initialscreen.png)
 Initial Screen
 
-![Screenshot 2]![](screenshots/Login Screen.png)
+![Screenshot 2]![](screenshots/LoginScreen.png)
 Login Screen
 
 ![Screenshot 3]![](screenshots/homescreen.png)

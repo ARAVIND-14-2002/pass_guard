@@ -60,6 +60,7 @@ class _HomeSecurityScreenState extends State<HomeSecurityScreen> {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
+
             SliverGrid.count(
               crossAxisCount: 2,
               childAspectRatio: 1.0,
@@ -186,9 +187,9 @@ class _HomeSecurityScreenState extends State<HomeSecurityScreen> {
           height: 150,
           decoration: ShapeDecoration(
             gradient: RadialGradient(
-              center: const Alignment(0.19, 0.49),
-              radius: 0.63,
-              colors: [const Color(0x4C8F02FF), Colors.white.withOpacity(0)],
+              center: const Alignment(0.30, 0.60),
+              radius: 0.75,
+              colors: [const Color(0x4C8F02FF), Colors.purple.withOpacity(0.1)],
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -197,13 +198,13 @@ class _HomeSecurityScreenState extends State<HomeSecurityScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 8),
+              const SizedBox(height: 5),
               Icon(
                 icon,
                 size: 40,
                 color: Colors.white,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 10),
               Text(
                 title,
                 style: const TextStyle(color: Colors.white),

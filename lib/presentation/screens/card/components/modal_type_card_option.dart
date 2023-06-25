@@ -16,7 +16,7 @@ void modalTypeCardOption(BuildContext context) {
     backgroundColor: Colors.transparent,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
     builder: (context) => Container(
-      height: 550,
+      height: 900,
       margin: const EdgeInsets.only(left: 10.0, right: 10.0),
       color: Colors.transparent,
       child: Column(

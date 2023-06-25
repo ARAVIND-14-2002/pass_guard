@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pass_guard/domain/blocs/blocs.dart';
 import 'package:pass_guard/presentation/screens/home/components/item_option_type.dart';
+import 'package:pass_guard/presentation/themes/themes.dart';
 
 void modalTypeCard(BuildContext context) {
 
@@ -14,7 +15,7 @@ void modalTypeCard(BuildContext context) {
     backgroundColor: Colors.transparent,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
     builder: (context) => Container(
-      height: 200,
+      height: 250,
       margin: const EdgeInsets.only(left: 10.0, right: 10.0),
       color: Colors.transparent,
       child: Column(
@@ -24,13 +25,13 @@ void modalTypeCard(BuildContext context) {
             width: 55,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50.0),
-              color: Colors.white70
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 10.0),
           Container(
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: ColorsFrave.primary,
               borderRadius: BorderRadius.circular(16.0)
             ),
             child: Padding(

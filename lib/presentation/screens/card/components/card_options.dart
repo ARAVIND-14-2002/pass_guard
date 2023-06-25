@@ -4,6 +4,7 @@ import 'package:pass_guard/domain/blocs/blocs.dart';
 import 'package:pass_guard/presentation/components/components.dart';
 import 'package:pass_guard/presentation/screens/card/components/modal_type_card.dart';
 import 'package:pass_guard/presentation/screens/card/components/modal_type_card_option.dart';
+import 'package:pass_guard/presentation/themes/themes.dart';
 
 class CardOptions extends StatelessWidget {
 
@@ -17,7 +18,7 @@ class CardOptions extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
-        color: const Color(0xff676767)
+        color: ColorsFrave.primary,
       ),
       child: Row(
         children: [
@@ -42,7 +43,7 @@ class CardOptions extends StatelessWidget {
           Container(
             height: 25,
             width: 2,
-            color: Colors.black87,
+            color: Colors.white,
           ),
           GestureDetector(
             onTap: () {

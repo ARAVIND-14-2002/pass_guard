@@ -61,7 +61,7 @@ class _ChangePinScreenState extends State<ChangePinScreen> {
           ),
           const Center(
           child: TextCustom(
-          text: 'Enter Master Password',
+          text: 'Enter New Master Password',
           fontSize: 24,
           isTitle: true,
           color: Color(4294309367),
@@ -168,7 +168,7 @@ class _ChangePinScreenState extends State<ChangePinScreen> {
                             ),
                             const SizedBox(height: 10,),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 const SizedBox(width: 60.0,),
                                 NumberOption(

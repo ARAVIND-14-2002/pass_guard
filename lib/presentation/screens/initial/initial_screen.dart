@@ -62,7 +62,7 @@ class InitialScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(20),
 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -70,9 +70,9 @@ class InitialScreen extends StatelessWidget {
                 BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, state) {
                     return Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 200),
+
                         ItemMenu(
                           icon: FontAwesomeIcons.circlePlus,
                           title: 'Create',
@@ -84,7 +84,7 @@ class InitialScreen extends StatelessWidget {
                             }
                           },
                         ).wrapContainerDecoration(),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 25),
                         ItemMenu(
                           icon: FontAwesomeIcons.rightToBracket,
                           title: 'Log In',
@@ -116,7 +116,7 @@ class InitialScreen extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 //   children: [
@@ -155,19 +155,20 @@ class InitialScreen extends StatelessWidget {
 extension ItemMenuExtension on ItemMenu {
   Widget wrapContainerDecoration() {
     return Container(
-      width: 200, // Increase the width of the container
+      height: 60,
+      width: 375, // Increase the width of the container
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.red,
-            Colors.purple,
+            Color(0xFF4E31AA),
+            Color(0x4C4E31AA),
           ],
         ),
       ),
       child: this,
     );
   }
-}
+  }

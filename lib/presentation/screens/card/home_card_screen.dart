@@ -41,6 +41,7 @@ class _HomeCardScreenState extends State<HomeCardScreen> {
       appBar: AppBar(
         title: const TextCustom(
           text: 'My Cards',
+          color: Colors.white,
           isTitle: true,
           fontWeight: FontWeight.w600, 
           fontSize: 19,
@@ -72,8 +73,8 @@ class _HomeCardScreenState extends State<HomeCardScreen> {
               decoration: const BoxDecoration(
                 gradient: RadialGradient(
                   colors: [
-                    ColorsFrave.primary,
-                    Colors.white,
+                    Color(0xFF4E31AA),
+                    Color(0x4C4E31AA),
                   ]
                 )
               ),

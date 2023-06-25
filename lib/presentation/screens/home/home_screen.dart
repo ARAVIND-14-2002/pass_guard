@@ -189,55 +189,57 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          color: ColorsFrave.primary,
-          child: Container(
-            decoration: BoxDecoration(
-              // gradient: ColorsFrave.bottomAppBarGradient,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(context, routeFade(page: HomeScreen()), (route) => false);
-                  },
-                  icon: const Icon(
-                    Icons.home,
-                    size: 30,
-                    color: Colors.white,
+        bottomNavigationBar: ClipRRect(
+          // borderRadius: const BorderRadius.only(
+          //   topLeft: Radius.circular(8.0),
+          //   topRight: Radius.circular(8.0),
+          // ),
+          child: BottomAppBar(
+            shape: const CircularNotchedRectangle(),
+            color: ColorsFrave.primary,
+            child: Container(
+              decoration: BoxDecoration(
+                // gradient: ColorsFrave.bottomAppBarGradient,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(context, routeFade(page: HomeScreen()), (route) => false);
+                    },
+                    icon: const Icon(
+                      Icons.home,
+                      size: 30,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-
-
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(context, routeFade(page: HomeSecurityScreen()), (route) => false);
-                  },
-                  icon: const Icon(
-                    Icons.security,
-                    size: 30,
-                    color: Colors.white,
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(context, routeFade(page: HomeSecurityScreen()), (route) => false);
+                    },
+                    icon: const Icon(
+                      Icons.security,
+                      size: 30,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(context, routeFade(page: SettingsScreen()), (route) => false);
-                  },
-                  icon: const Icon(
-                    Icons.person,
-                    size: 30,
-                    color: Colors.white,
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(context, routeFade(page: SettingsScreen()), (route) => false);
+                    },
+                    icon: const Icon(
+                      Icons.person,
+                      size: 30,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-
-              ],
+                ],
+              ),
             ),
           ),
         ),
+
 
         floatingActionButton: FloatingActionButton(
           heroTag: 'add-password',

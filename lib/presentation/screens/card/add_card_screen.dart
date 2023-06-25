@@ -97,7 +97,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     text: 'CARD OPTIONS',
                     isTitle: true,
                     fontSize: 13,
-                    color: Colors.grey,
+                    color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
                   const SizedBox(height: 10.0),
@@ -109,7 +109,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     text: 'CARD DETAILS',
                     isTitle: true,
                     fontSize: 13,
-                    color: Colors.grey,
+                    color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
                   const SizedBox(height: 10.0),
@@ -130,11 +130,11 @@ class _AddCardScreenState extends State<AddCardScreen> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
-                          color: const Color(0xffF3F1ED)
+                          color: ColorsFrave.primary,
                         ),
                         child: TextFormField(
                           controller: _cardNumber,
-                          style: GoogleFonts.poppins(fontSize: 16, color: Colors.black),
+                          style: GoogleFonts.poppins(fontSize: 16, color: Colors.white),
                           cursorColor: ColorsFrave.primary,
                           keyboardType: TextInputType.number,
                           inputFormatters: [
@@ -176,11 +176,11 @@ class _AddCardScreenState extends State<AddCardScreen> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
-                            color: const Color(0xffF3F1ED)
+                            color: ColorsFrave.primary,
                           ),
                           child: TextFormField(
                             controller: _cardDate,
-                            style: GoogleFonts.poppins(fontSize: 16, color: Colors.black),
+                            style: GoogleFonts.poppins(fontSize: 16, color: Colors.white),
                             cursorColor: ColorsFrave.primary,
                             keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.next,
@@ -209,11 +209,11 @@ class _AddCardScreenState extends State<AddCardScreen> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
-                            color: const Color(0xffF3F1ED)
+                            color: ColorsFrave.primary,
                           ),
                           child: TextFormField(
                             controller: _cardCvv,
-                            style: GoogleFonts.poppins(fontSize: 16, color: Colors.black),
+                            style: GoogleFonts.poppins(fontSize: 16, color: Colors.white),
                             cursorColor: ColorsFrave.primary,
                             keyboardType: TextInputType.number,
                             inputFormatters: [

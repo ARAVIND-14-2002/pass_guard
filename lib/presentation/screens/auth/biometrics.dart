@@ -134,8 +134,8 @@ extension ItemMenuExtension on Widget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.red,
-            Colors.purple,
+            Color(0xFF4E31AA),
+            Color(0x4C4E31AA),
           ],
         ),
       ),

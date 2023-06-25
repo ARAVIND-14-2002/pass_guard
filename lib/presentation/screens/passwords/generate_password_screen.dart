@@ -71,14 +71,14 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
                   return Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 60),
                     decoration: BoxDecoration(
-                      color: ColorsFrave.primary.withOpacity(.03),
+                      color: Colors.blueGrey.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(30.0),
                       border: Border.all(color: Colors.white),
                     ),
                     child: TextFormField(
                       readOnly: true,
                       controller: _passwordController,
-                      style: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.white),
+                      style: GoogleFonts.poppins(fontSize: 20.0, fontWeight: FontWeight.w600, color: Colors.white),
                       textAlign: TextAlign.center,
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
@@ -117,7 +117,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
                           max: 40,
                           label: '${state.length}',
                           activeColor: ColorsFrave.primary,
-                          inactiveColor: Colors.lightBlue,
+                          inactiveColor: Colors.grey,
                           onChanged: (value) {
                             _generatePasswordBloc.add(LengthPasswordEvent(value));
                           },

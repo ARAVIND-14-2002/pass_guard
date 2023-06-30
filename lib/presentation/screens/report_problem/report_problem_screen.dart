@@ -41,7 +41,7 @@ class ReportProblemScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 32,
               textAlign: TextAlign.center,
-              color: ColorsFrave.primary,
+              color: ColorsArvi.primary,
             ),
             const SizedBox(height: 20.0),
             IconButton(

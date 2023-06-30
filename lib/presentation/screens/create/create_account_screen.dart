@@ -72,7 +72,7 @@ class CreateAccountScreen extends StatelessWidget {
                                 ? FontAwesomeIcons.solidCircle
                                 : FontAwesomeIcons.circle,
                                 color: state.numbersCreate.length >= i + 1
-                                ? ColorsFrave.primary
+                                ? ColorsArvi.primary
                                 : Color(4294309367),
                                 size: 40.0
                               ),

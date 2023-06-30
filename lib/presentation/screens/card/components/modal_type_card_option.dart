@@ -33,7 +33,7 @@ void modalTypeCardOption(BuildContext context) {
           Container(
             height: 400,
             decoration: BoxDecoration(
-              color: ColorsFrave.primary,
+              color: Colors.black,
               borderRadius: BorderRadius.circular(16.0)
             ),
             child: Padding(

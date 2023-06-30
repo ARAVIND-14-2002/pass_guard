@@ -109,7 +109,7 @@ class CardBloc extends Bloc<CardEvent, CardState> {
 
   Future<void> _saveNewCard(SaveNewCardEvent event, Emitter<CardState> emit) async {
   
-    final box = Hive.box<CardModel>('encrypt-card-wallet-fraved');
+    final box = Hive.box<CardModel>('encrypt-card-wallet-arvi');
 
     const uuid = Uuid();
 

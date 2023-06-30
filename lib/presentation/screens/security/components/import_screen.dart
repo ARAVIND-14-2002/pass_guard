@@ -39,7 +39,7 @@ Future<void> openLocalFileDirectory(BuildContext context) async {
       final encryptedData = await file.readAsString();
 
       // Decrypt the encrypted data
-      final key = encrypt.Key.fromUtf8('encrypt-password-fraved');
+      final key = encrypt.Key.fromUtf8('encrypt-password-arvi');
       final iv = encrypt.IV.fromLength(16);
       final encrypter = encrypt.Encrypter(encrypt.AES(key));
       final decryptedData = encrypter.decrypt64(encryptedData, iv: iv);

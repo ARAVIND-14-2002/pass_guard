@@ -70,8 +70,8 @@ class _AppPasswordScreenState extends State<AppPasswordScreen> {
                 ),
                 child: TextFormField(
                   controller: _searchController,
-                  style: GoogleFonts.poppins(fontSize: 15.0, fontWeight: FontWeight.w600, color: ColorsFrave.primary),
-                  cursorColor: ColorsFrave.primary,
+                  style: GoogleFonts.poppins(fontSize: 15.0, fontWeight: FontWeight.w600, color: ColorsArvi.primary),
+                  cursorColor: ColorsArvi.primary,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Search password',
@@ -126,7 +126,7 @@ class _AppPasswordScreenState extends State<AppPasswordScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: 'add-password',
-        backgroundColor: ColorsFrave.primary,
+        backgroundColor: ColorsArvi.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0)
         ),

@@ -29,10 +29,10 @@ void modalMessage(BuildContext context, String message, {Color? color}){
           actions: [
             TextButton(
               style: TextButton.styleFrom(
-                foregroundColor: ColorsFrave.primary
+                foregroundColor: ColorsArvi.primary
               ),
               onPressed: () => Navigator.pop(context), 
-              child: const TextCustom(text: 'Ok', color: ColorsFrave.primary, fontWeight: FontWeight.w500,)
+              child: const TextCustom(text: 'Ok', color: ColorsArvi.primary, fontWeight: FontWeight.w500,)
             )
           ],
       ),

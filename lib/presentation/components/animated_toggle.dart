@@ -33,7 +33,7 @@ class AnimatedToggleState extends State<AnimatedToggle> {
             width: width,
             height: width * .14,
             decoration: ShapeDecoration(
-              color: widget.isActive ? ColorsFrave.primary : widget.colorInactive,
+              color: widget.isActive ? ColorsArvi.primary : widget.colorInactive,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(width * .1))
             ),
           ),

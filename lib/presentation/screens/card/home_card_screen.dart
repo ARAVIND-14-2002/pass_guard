@@ -117,7 +117,7 @@ class _HomeCardScreenState extends State<HomeCardScreen> {
                 decoration: const BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      ColorsFrave.redLogOut,
+                      ColorsArvi.redLogOut,
                       Colors.white,
                       Colors.white,
                     ]

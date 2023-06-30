@@ -120,10 +120,10 @@ class _HomeSecurityScreenState extends State<HomeSecurityScreen> {
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: ColorsFrave.primary,
+        color: ColorsArvi.primary,
         child: Container(
           decoration: BoxDecoration(
-            // gradient: ColorsFrave.bottomAppBarGradient,
+            // gradient: ColorsArvi.bottomAppBarGradient,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

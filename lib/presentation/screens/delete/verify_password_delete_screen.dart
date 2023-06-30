@@ -62,7 +62,7 @@ class _VerifyPasswordDeleteScreenState extends State<VerifyPasswordDeleteScreen>
                     fontSize: 21,
                     isTitle: true,
                     textAlign: TextAlign.center,
-                    color: ColorsFrave.primary,
+                    color: ColorsArvi.primary,
                     fontWeight: FontWeight.w500,
                   )
                 ),
@@ -82,7 +82,7 @@ class _VerifyPasswordDeleteScreenState extends State<VerifyPasswordDeleteScreen>
                                 color: state.numbers.length >= i + 1
                                 ? state.isFailPassword
                                   ? Colors.red
-                                  : ColorsFrave.primary
+                                  : ColorsArvi.primary
                                 : Colors.red,
                                 size: 40.0
                               ),

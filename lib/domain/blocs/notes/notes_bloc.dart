@@ -44,7 +44,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   
     if(event.title.isNotEmpty){
 
-      final box = Hive.box<NotesModel>('encrypt-notes-fraved');
+      final box = Hive.box<NotesModel>('encrypt-notes-arvi');
 
       const uuid = Uuid();
 
@@ -68,7 +68,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   
     emit(state.copyWith(listNotes: const []));
   
-    final box = Hive.box<NotesModel>('encrypt-notes-fraved');
+    final box = Hive.box<NotesModel>('encrypt-notes-arvi');
 
     final notes = box.values.toList();
 
@@ -92,7 +92,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     
      if(event.title.isNotEmpty){
 
-      final box = Hive.box<NotesModel>('encrypt-notes-fraved');
+      final box = Hive.box<NotesModel>('encrypt-notes-arvi');
 
       const uuid = Uuid();
 
@@ -114,7 +114,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
 
   Future<void> _deleteNote(DeleteNoteEvent event, Emitter<NotesState> emit) async {
   
-    final box = Hive.box<NotesModel>('encrypt-notes-fraved');
+    final box = Hive.box<NotesModel>('encrypt-notes-arvi');
     box.deleteAt(event.index);
   }
 

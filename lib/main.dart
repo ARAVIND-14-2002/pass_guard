@@ -76,9 +76,9 @@ class _MyAppState extends State<MyApp> {
     Hive.registerAdapter(CardModelAdapter());
     Hive.registerAdapter(NotesModelAdapter());
 
-    await Hive.openBox<PasswordModel>('encrypt-password-fraved', encryptionCipher: HiveAesCipher(encryptionKey));
-    await Hive.openBox<CardModel>('encrypt-card-wallet-fraved', encryptionCipher: HiveAesCipher(encryptionKey));
-    await Hive.openBox<NotesModel>('encrypt-notes-fraved', encryptionCipher: HiveAesCipher(encryptionKey));
+    await Hive.openBox<PasswordModel>('encrypt-password-arvi', encryptionCipher: HiveAesCipher(encryptionKey));
+    await Hive.openBox<CardModel>('encrypt-card-wallet-arvi', encryptionCipher: HiveAesCipher(encryptionKey));
+    await Hive.openBox<NotesModel>('encrypt-notes-arvi', encryptionCipher: HiveAesCipher(encryptionKey));
   }
 
 
@@ -94,8 +94,8 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             title: 'Pass Guard',
             debugShowCheckedModeBanner: false,
-            theme: ThemesFraved.appThemeDark,
-            darkTheme: ThemesFraved.appTheme,
+            theme: ThemesArvi.appThemeDark,
+            darkTheme: ThemesArvi.appTheme,
             themeMode: state.isOscure ? ThemeMode.dark : ThemeMode.light,
             home: const InitialScreen(),
           );

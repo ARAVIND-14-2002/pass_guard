@@ -94,7 +94,7 @@ void modalAddPasswordHome(BuildContext context) {
               TextFormField(
                 controller: nicknameController,
                 style: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.white),
-                cursorColor: ColorsFrave.primary,
+                cursorColor: ColorsArvi.primary,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter Nickname',
@@ -145,11 +145,11 @@ void modalAddPasswordHome(BuildContext context) {
               TextFormField(
                 controller: emailController,
                 style: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.white),
-                cursorColor: ColorsFrave.primary,
+                cursorColor: ColorsArvi.primary,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter Email',
-                  hintStyle: GoogleFonts.poppins(color: ColorsFrave.subtitle)
+                  hintStyle: GoogleFonts.poppins(color: ColorsArvi.subtitle)
                 ),
               ),
               const SizedBox(height: 24.0),
@@ -159,11 +159,11 @@ void modalAddPasswordHome(BuildContext context) {
                   return TextFormField(
                     controller: passwordController,
                     style: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.white),
-                    cursorColor: ColorsFrave.primary,
+                    cursorColor: ColorsArvi.primary,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Enter password or generate password',
-                      hintStyle: GoogleFonts.poppins(color: ColorsFrave.subtitle)
+                      hintStyle: GoogleFonts.poppins(color: ColorsArvi.subtitle)
                     ),
                   );
                 },
@@ -234,11 +234,11 @@ void modalAddPasswordHome(BuildContext context) {
                     return TextFormField(
                       controller: websiteController,
                       style: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.white),
-                      cursorColor: ColorsFrave.primary,
+                      cursorColor: ColorsArvi.primary,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter website',
-                        hintStyle: GoogleFonts.poppins(color: ColorsFrave.subtitle)
+                        hintStyle: GoogleFonts.poppins(color: ColorsArvi.subtitle)
                       ),
                     );
                   }

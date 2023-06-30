@@ -161,7 +161,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Expanded(
                           child: CardHomeHeader(
                             title: 'Card',
-                            subtitle: '${state.cardStadistcs} cards',
+                            subtitle: 'Cards',
+                            // subtitle: '${state.cardStadistcs} cards',
                             icon: FontAwesomeIcons.creditCard,
                             color: const Color(0xff387EDD),
                             onTap: () {
@@ -196,10 +197,10 @@ class _HomeScreenState extends State<HomeScreen> {
           // ),
           child: BottomAppBar(
             shape: const CircularNotchedRectangle(),
-            color: ColorsFrave.primary,
+            color: ColorsArvi.primary,
             child: Container(
               decoration: BoxDecoration(
-                // gradient: ColorsFrave.bottomAppBarGradient,
+                // gradient: ColorsArvi.bottomAppBarGradient,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -243,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         floatingActionButton: FloatingActionButton(
           heroTag: 'add-password',
-          backgroundColor: ColorsFrave.primary,
+          backgroundColor: ColorsArvi.primary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),

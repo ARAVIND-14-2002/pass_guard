@@ -12,7 +12,7 @@ class PasswordManager {
   GlobalKey<ScaffoldMessengerState>();
 
   Future<void> exportPasswords() async {
-    final box = Hive.box<PasswordModel>('encrypt-password-fraved');
+    final box = Hive.box<PasswordModel>('encrypt-password-arvi');
     final List<PasswordModel> passwords = box.values.toList();
     final jsonData = jsonEncode(passwords.map((p) => p.toJson()).toList());
 
@@ -53,7 +53,7 @@ class PasswordManager {
         final jsonData = await file.readAsString();
         final passwordList = jsonDecode(jsonData) as List<dynamic>;
 
-        final box = Hive.box<PasswordModel>('encrypt-password-fraved');
+        final box = Hive.box<PasswordModel>('encrypt-password-arvi');
         await box.clear();
 
         for (final item in passwordList) {

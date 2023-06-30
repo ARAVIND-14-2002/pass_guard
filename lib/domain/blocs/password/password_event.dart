@@ -36,14 +36,32 @@ class SavePasswordEvent extends PasswordEvent {
     this.website
   });
 }
+class ToggleShowPasswordEvent extends PasswordEvent {}
+
 
 class CopyPasswordEvent extends PasswordEvent {
   final PasswordModel password;
   const CopyPasswordEvent(this.password);
 }
 
+
 class DeletePasswordEvent extends PasswordEvent {
   final int index;
   const DeletePasswordEvent(this.index);
 }
 
+class UpdatePasswordEvent extends PasswordEvent {
+  final int index;
+  final String nickname;
+  final String email;
+  final String password;
+  final String website;
+
+  const UpdatePasswordEvent({
+    required this.index,
+    required this.nickname,
+    required this.email,
+    required this.password,
+    required this.website,
+  });
+}

@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   color: state.numbers.length >= i + 1
                                       ? state.isFailPassword
                                       ? Colors.red
-                                      : ColorsFrave.primary
+                                      : ColorsArvi.primary
                                       : Color(4294309367),
                                   size: MediaQuery.of(context).size.width * 0.08,
                                 ),

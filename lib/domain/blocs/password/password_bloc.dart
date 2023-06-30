@@ -23,7 +23,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     on<SavePasswordEvent>(_savePassword);
     on<CopyPasswordEvent>(_copyPassword);
     on<DeletePasswordEvent>(_deletePassword);
-
+    on<ToggleShowPasswordEvent>(_toggleShowPassword);
   }
 
 
@@ -54,7 +54,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
 
     final encryptPass = EncryptData.encryptPassword(event.password, token!);
 
-    final box = Hive.box<PasswordModel>('encrypt-password-fraved');
+    final box = Hive.box<PasswordModel>('encrypt-password-arvi');
 
     const uuid = Uuid();
 
@@ -87,12 +87,16 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     final decrypted = encrypter.decrypt(encrypted.Encrypted.fromBase64(event.password.password), iv: iv);
 
     Clipboard.setData(ClipboardData(text: decrypted));
+    emit(state.copyWith(showPassword: state.showPassword));
   }
 
-
+  Future<void> _toggleShowPassword(ToggleShowPasswordEvent event, Emitter<PasswordState> emit) async {
+    final currentState = state.showPassword;
+    emit(state.copyWith(showPassword: !currentState));
+  }
   Future<void> _deletePassword(DeletePasswordEvent event, Emitter<PasswordState> emit) async {
 
-    final box = Hive.box<PasswordModel>('encrypt-password-fraved');
+    final box = Hive.box<PasswordModel>('encrypt-password-arvi');
     box.deleteAt(event.index);
 
     return emit(SuccessFailurePasswordStatus());

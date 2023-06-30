@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColorsFrave {
+class ColorsArvi {
   static const Color primary = Color(0xff4e31aa);
   static const Color background = Color(0xffFFFFFF);
   static const Color backgroundTextField = Color(0xffF5F5F5);
@@ -30,20 +30,20 @@ class ColorsFrave {
   );
 }
 
-class ThemesFraved {
+class ThemesArvi {
   static ThemeData appTheme = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: ColorsFrave.background,
+    scaffoldBackgroundColor: ColorsArvi.background,
     primaryColor: Colors.black87,
     colorScheme: const ColorScheme.light(),
     cardColor: Colors.white,
     cardTheme: const CardTheme(color: Color(0xffF8F9FA)),
     iconTheme: const IconThemeData(color: Colors.black),
     primaryColorDark: Colors.black,
-    dialogBackgroundColor: ColorsFrave.background,
+    dialogBackgroundColor: ColorsArvi.background,
     appBarTheme: const AppBarTheme(
       elevation: 0,
-      backgroundColor: ColorsFrave.background,
+      backgroundColor: ColorsArvi.background,
       iconTheme: IconThemeData(color: Colors.black),
     ),
   );

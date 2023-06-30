@@ -24,7 +24,7 @@ class BtnCustom extends StatelessWidget {
     this.border = 8.0,
     this.colorText = Colors.white,
     this.fontSize = 16,
-    this.backgroundColor = ColorsFrave.primary,
+    this.backgroundColor = ColorsArvi.primary,
     this.fontWeight = FontWeight.normal,
     this.isTitle = false,
   }) : super(key: key);

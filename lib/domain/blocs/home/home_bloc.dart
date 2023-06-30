@@ -27,9 +27,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     emit(state.copyWith(passwordRecently: const []));
   
-    final box = Hive.box<PasswordModel>('encrypt-password-fraved');
+    final box = Hive.box<PasswordModel>('encrypt-password-arvi');
 
-    final cardsBox = Hive.box<CardModel>('encrypt-card-wallet-fraved');
+    final cardsBox = Hive.box<CardModel>('encrypt-card-wallet-arvi');
 
     final passwords = box.values.toList();
 
@@ -79,7 +79,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   
     emit(state.copyWith(cards: const []));
   
-    final box = Hive.box<CardModel>('encrypt-card-wallet-fraved');
+    final box = Hive.box<CardModel>('encrypt-card-wallet-arvi');
 
     final cards = box.values.toList();
   

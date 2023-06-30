@@ -84,7 +84,7 @@ class _VerifyPinScreenState extends State<VerifyPinScreen> {
                                 color: state.numbers.length >= i + 1
                                 ? state.isFailurePassword
                                   ? Colors.red
-                                  : ColorsFrave.primary
+                                  : ColorsArvi.primary
                                 : Color(4294309367),
                                 size: 40.0
                               ),

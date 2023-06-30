@@ -243,7 +243,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const Text(
                     'General',
                     style: TextStyle(
-                      color: ColorsFrave.subtitle,
+                      color: ColorsArvi.subtitle,
                       fontSize: 15,
                     ),
                   ),
@@ -365,10 +365,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
           bottomNavigationBar: BottomAppBar(
             shape: const CircularNotchedRectangle(),
-            color: ColorsFrave.primary,
+            color: ColorsArvi.primary,
             child: Container(
               decoration: BoxDecoration(
-                // gradient: ColorsFrave.bottomAppBarGradient,
+                // gradient: ColorsArvi.bottomAppBarGradient,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

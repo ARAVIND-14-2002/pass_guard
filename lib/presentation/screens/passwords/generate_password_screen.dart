@@ -116,7 +116,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
                           min: 0,
                           max: 40,
                           label: '${state.length}',
-                          activeColor: ColorsFrave.primary,
+                          activeColor: ColorsArvi.primary,
                           inactiveColor: Colors.grey,
                           onChanged: (value) {
                             _generatePasswordBloc.add(LengthPasswordEvent(value));
@@ -222,7 +222,7 @@ class _GeneratePasswordScreenState extends State<GeneratePasswordScreen> {
                 width: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50.0),
-                  color: ColorsFrave.primary.withOpacity(.2),
+                  color: ColorsArvi.primary.withOpacity(.2),
                 ),
                 child: const Icon(FontAwesomeIcons.rotate, color: Colors.white),
               ),

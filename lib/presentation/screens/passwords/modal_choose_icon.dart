@@ -59,8 +59,8 @@ void modalChooseIconLogo(BuildContext context) {
                 ),
                 child: TextFormField(
                   controller: searchController,
-                  style: GoogleFonts.poppins(fontSize: 15.0, fontWeight: FontWeight.w600, color: ColorsFrave.primary),
-                  cursorColor: ColorsFrave.primary,
+                  style: GoogleFonts.poppins(fontSize: 15.0, fontWeight: FontWeight.w600, color: ColorsArvi.primary),
+                  cursorColor: ColorsArvi.primary,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Search',

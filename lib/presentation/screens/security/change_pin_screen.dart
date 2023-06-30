@@ -82,7 +82,7 @@ class _ChangePinScreenState extends State<ChangePinScreen> {
                                 ? FontAwesomeIcons.solidCircle
                                 : FontAwesomeIcons.circle, 
                                 color: state.newNumbers.length >= i + 1
-                                ? ColorsFrave.primary
+                                ? ColorsArvi.primary
                                 : Color(4294309367),
                                 size: 40.0
                               ),

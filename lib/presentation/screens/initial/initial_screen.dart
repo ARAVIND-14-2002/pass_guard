@@ -171,4 +171,4 @@ extension ItemMenuExtension on ItemMenu {
       child: this,
     );
   }
-  }
+}

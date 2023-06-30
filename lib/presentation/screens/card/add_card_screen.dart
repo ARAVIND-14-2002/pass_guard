@@ -130,12 +130,12 @@ class _AddCardScreenState extends State<AddCardScreen> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
-                          color: ColorsFrave.primary,
+                          color: ColorsArvi.primary,
                         ),
                         child: TextFormField(
                           controller: _cardNumber,
                           style: GoogleFonts.poppins(fontSize: 16, color: Colors.white),
-                          cursorColor: ColorsFrave.primary,
+                          cursorColor: ColorsArvi.primary,
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             MaskedTextInputFormatter(
@@ -176,12 +176,12 @@ class _AddCardScreenState extends State<AddCardScreen> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
-                            color: ColorsFrave.primary,
+                            color: ColorsArvi.primary,
                           ),
                           child: TextFormField(
                             controller: _cardDate,
                             style: GoogleFonts.poppins(fontSize: 16, color: Colors.white),
-                            cursorColor: ColorsFrave.primary,
+                            cursorColor: ColorsArvi.primary,
                             keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.next,
                             inputFormatters: [
@@ -209,12 +209,12 @@ class _AddCardScreenState extends State<AddCardScreen> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
-                            color: ColorsFrave.primary,
+                            color: ColorsArvi.primary,
                           ),
                           child: TextFormField(
                             controller: _cardCvv,
                             style: GoogleFonts.poppins(fontSize: 16, color: Colors.white),
-                            cursorColor: ColorsFrave.primary,
+                            cursorColor: ColorsArvi.primary,
                             keyboardType: TextInputType.number,
                             inputFormatters: [
                               LengthLimitingTextInputFormatter(4)

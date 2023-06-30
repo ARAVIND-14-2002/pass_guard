@@ -34,7 +34,7 @@ class CardItemSecurity extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(icon, color: ColorsFrave.primary),
+                Icon(icon, color: ColorsArvi.primary),
                 const SizedBox(width: 15.0),
                 TextCustom(
                   text: title,

@@ -18,7 +18,7 @@ class CardOptions extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
-        color: ColorsFrave.primary,
+        color: Colors.white,
       ),
       child: Row(
         children: [

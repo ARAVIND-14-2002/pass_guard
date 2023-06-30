@@ -60,4 +60,5 @@ class PasswordModel {
       isFavorite: json['isFavorite'] as bool? ?? false,
     );
   }
+
 }

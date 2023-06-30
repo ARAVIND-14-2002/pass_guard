@@ -46,7 +46,7 @@ class PasswordManager {
         final jsonData = await file.readAsString();
         final passwordList = jsonDecode(jsonData) as List<dynamic>;
 
-        final box = await Hive.openBox<PasswordModel>('encrypt-password-fraved');
+        final box = await Hive.openBox<PasswordModel>('encrypt-password-arvi');
 
         for (final item in passwordList) {
           final password = PasswordModel.fromJson(item as Map<String, dynamic>);
@@ -233,7 +233,7 @@ class BoxWithIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: ColorsFrave.primary,
+        color: ColorsArvi.primary,
         borderRadius: BorderRadius.circular(10.0),
       ),
       padding: const EdgeInsets.all(16.0),
@@ -295,7 +295,7 @@ void main() async {
   final appDocumentDirectory = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
   Hive.registerAdapter(PasswordModelAdapter());
-  await Hive.openBox<PasswordModel>('encrypt-password-fraved');
+  await Hive.openBox<PasswordModel>('encrypt-password-arvi');
 
   runApp(MaterialApp(
     title: 'Image App',
@@ -305,7 +305,7 @@ void main() async {
 }
 
 Future<void> exportPasswords(BuildContext context) async {
-  final box = Hive.box<PasswordModel>('encrypt-password-fraved');
+  final box = Hive.box<PasswordModel>('encrypt-password-arvi');
   final List<PasswordModel> passwords = box.values.toList();
   final jsonData = jsonEncode(passwords.map((p) => p.toJson()).toList());
 

@@ -92,8 +92,8 @@ class _EditNotepadScreenState extends State<EditNotepadScreen> {
                 maxLines: null,
                 cursorHeight: 28,
                 cursorWidth: 1.5,
-                cursorColor: ColorsFrave.primary,
-                style: GoogleFonts.poppins(fontSize: 16, color: ColorsFrave.primary, fontWeight: FontWeight.bold),
+                cursorColor: ColorsArvi.primary,
+                style: GoogleFonts.poppins(fontSize: 16, color: ColorsArvi.primary, fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   errorBorder: InputBorder.none,
@@ -113,7 +113,7 @@ class _EditNotepadScreenState extends State<EditNotepadScreen> {
                 maxLines: null,
                 cursorHeight: 28,
                 cursorWidth: 1.5,
-                cursorColor: ColorsFrave.primary,
+                cursorColor: ColorsArvi.primary,
                 style: GoogleFonts.inter(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),
                 decoration: const InputDecoration(
                   border: InputBorder.none,

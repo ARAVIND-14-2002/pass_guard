@@ -61,16 +61,16 @@ void modalGeneratePassword(BuildContext context) {
                       return Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 60),
                         decoration: BoxDecoration(
-                          color: ColorsFrave.primary.withOpacity(.03),
+                          color: ColorsArvi.primary.withOpacity(.03),
                           borderRadius: BorderRadius.circular(8.0),
-                          border: Border.all(color: ColorsFrave.primary.withOpacity(.5)),
+                          border: Border.all(color: ColorsArvi.primary.withOpacity(.5)),
                         ),
                         child: TextFormField(
                           readOnly: true,
                           controller: passwordController,
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w600, color: ColorsFrave.primary),
-                          cursorColor: ColorsFrave.primary,
+                          style: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w600, color: ColorsArvi.primary),
+                          cursorColor: ColorsArvi.primary,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: 'password',
@@ -107,7 +107,7 @@ void modalGeneratePassword(BuildContext context) {
                               min: 0,
                               max: 40,
                               label: '${state.length}',
-                              activeColor: ColorsFrave.primary,
+                              activeColor: ColorsArvi.primary,
                               inactiveColor: Colors.grey,
                               onChanged: (value) {
                                 generatePasswordBloc.add(LengthPasswordEvent(value));
@@ -273,7 +273,7 @@ void modalGeneratePassword(BuildContext context) {
                       width: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50.0),
-                        color: ColorsFrave.primary.withOpacity(.2)
+                        color: ColorsArvi.primary.withOpacity(.2)
                       ),
                       child: const Icon(FontAwesomeIcons.rotate, color: Colors.black87),
                     ),

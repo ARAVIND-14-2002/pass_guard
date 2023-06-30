@@ -49,7 +49,7 @@ class GridviewNotes extends StatelessWidget {
                     TextCustom(
                       text: notes[i].title,
                       isTitle: true,
-                      color: ColorsFrave.primary,
+                      color: ColorsArvi.primary,
                       fontWeight: FontWeight.w500,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

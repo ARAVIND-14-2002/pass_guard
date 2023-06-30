@@ -202,11 +202,11 @@ class IconsLogo {
       name: 'Ethereum',
       path: 'assets/logos/ethereum.svg'
     ),
-    IconsLogo(
-      id: '39',
-      name: 'Ethereum Color',
-      path: 'assets/logos/ethereum-color.svg'
-    ),
+    // IconsLogo(
+    //   id: '39',
+    //   name: 'Ethereum Color',
+    //   path: 'assets/logos/ethereum-color.svg'
+    // ),
     IconsLogo(
       id: '40',
       name: '',

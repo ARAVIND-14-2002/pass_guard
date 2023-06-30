@@ -12,7 +12,7 @@ class LocalSecureStorage {
   }
   
   Future<void> setTokenEncrypt(String token) async {
-    await secureStorage.write(key: 'fraved_token_encrypt', value: token);
+    await secureStorage.write(key: 'arvi_token_encrypt', value: token);
   }
 
 
@@ -22,14 +22,14 @@ class LocalSecureStorage {
   }
 
   Future<String?> readTokenEncrypt() async {
-    return await secureStorage.read(key: 'fraved_token_encrypt');
+    return await secureStorage.read(key: 'arvi_token_encrypt');
   }
 
 
   // DELETE ALL STORAGE
   Future<void> deleteSecureStorage() async {
     await secureStorage.delete(key: 'xxx_token');
-    await secureStorage.delete(key: 'fraved_token_encrypt');
+    await secureStorage.delete(key: 'arvi_token_encrypt');
   }
 
 

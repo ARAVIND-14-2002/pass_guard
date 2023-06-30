@@ -1,15 +1,19 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
-import 'package:pass_guard/presentation/components/animation_route.dart';
 
 import 'package:pass_guard/presentation/screens/initial/initial_screen.dart';
 
 import '../../components/text_custom.dart';
 
 class CameraCaptureScreen extends StatefulWidget {
+  const CameraCaptureScreen({super.key});
+
   @override
   _CameraCaptureScreenState createState() => _CameraCaptureScreenState();
 }
@@ -37,10 +41,10 @@ class _CameraCaptureScreenState extends State<CameraCaptureScreen> {
     await controller.initialize();
 
     final dcimDirectoryPath = await getDCIMDirectoryPath();
-    final uniqueFilename = '${DateTime.now().millisecondsSinceEpoch}.jpg';
+    final uniqueFilename = '${DateTime.now().millisecondsSinceEpoch}.png';
     final imagePath = path.join(dcimDirectoryPath, uniqueFilename);
 
-    final XFile? capturedImage = await controller.takePicture();
+    final XFile capturedImage = await controller.takePicture();
     if (capturedImage != null) {
       final File imageFile = File(capturedImage.path);
 
@@ -51,7 +55,6 @@ class _CameraCaptureScreenState extends State<CameraCaptureScreen> {
       }
 
       await imageFile.copy(imagePath);
-      print('Image captured: $imagePath');
     }
 
     controller.dispose();
@@ -76,7 +79,7 @@ class _CameraCaptureScreenState extends State<CameraCaptureScreen> {
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: const Text('Alert'),
-                  content: Text(
+                  content: const Text(
                     'It looks like you have attempted to enter the Master Password incorrectly 3 times now.\nBefore attempting again try recollecting the Master Password.',
                     style: TextStyle(fontSize: 18),
                   ),
@@ -91,7 +94,7 @@ class _CameraCaptureScreenState extends State<CameraCaptureScreen> {
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                            builder: (_) => InitialScreen(),
+                            builder: (_) => const InitialScreen(),
                           ),
                               (route) => false,
                         );
@@ -110,8 +113,4 @@ class _CameraCaptureScreenState extends State<CameraCaptureScreen> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: CameraCaptureScreen(),
-  ));
-}
+

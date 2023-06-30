@@ -54,7 +54,7 @@ void modalSettings(BuildContext context){
                   const SizedBox(height: 5.0),
                   const TextCustom(
                     text: 'Light mode',
-                    color: ColorsFrave.subtitle,
+                    color: ColorsArvi.subtitle,
                     fontSize: 15,
                   ),
                   const SizedBox(height: 10.0),
@@ -70,7 +70,7 @@ void modalSettings(BuildContext context){
                   const SizedBox(height: 15.0),
                   const TextCustom(
                     text: 'General',
-                    color: ColorsFrave.subtitle,
+                    color: ColorsArvi.subtitle,
                     fontSize: 15,
                   ),
                   const SizedBox(height: 10.0),
@@ -139,10 +139,10 @@ void modalSettings(BuildContext context){
                         color: Theme.of(context).cardTheme.color,
                         borderRadius: BorderRadius.circular(8.0)
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(FontAwesomeIcons.arrowRightFromBracket, color: ColorsFrave.redLogOut, size: 20),
+                        children: [
+                          Icon(FontAwesomeIcons.arrowRightFromBracket, color: ColorsArvi.redLogOut, size: 20),
                           SizedBox(width: 10.0),
                           TextCustom(
                             text: 'Log out',

@@ -108,9 +108,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     await localSecureStorage.deleteSecureStorage();
 
-    await Hive.box<CardModel>('encrypt-card-wallet-fraved').deleteFromDisk();
+    await Hive.box<CardModel>('encrypt-card-wallet-arvi').deleteFromDisk();
 
-    await Hive.box<PasswordModel>('encrypt-password-fraved').deleteFromDisk();
+    await Hive.box<PasswordModel>('encrypt-password-arvi').deleteFromDisk();
   
     return emit(const AuthState());
   }

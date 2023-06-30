@@ -55,7 +55,7 @@ class _NotepadHomeScreenState extends State<NotepadHomeScreen> {
                 onPressed: (){
                   notesBloc.add(ChangeGridListEvent(!state.isGridView));
                 }, 
-                icon: Icon(state.isGridView ? Icons.grid_view_rounded : Icons.sort, size: 19, color: ColorsFrave.primary)
+                icon: Icon(state.isGridView ? Icons.grid_view_rounded : Icons.sort, size: 19, color: ColorsArvi.primary)
               );
             },
           ),

@@ -26,7 +26,7 @@ void modalLoadingblur(BuildContext context, {Color color = Colors.white}){
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16.0)
               ),
-              child: const CircularProgressIndicator(color: ColorsFrave.primary)
+              child: const CircularProgressIndicator(color: ColorsArvi.primary)
             ),
           )
         ),

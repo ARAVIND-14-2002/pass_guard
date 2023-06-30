@@ -15,7 +15,7 @@ void modalTypeCard(BuildContext context) {
     backgroundColor: Colors.transparent,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
     builder: (context) => Container(
-      height: 250,
+      height: 225,
       margin: const EdgeInsets.only(left: 10.0, right: 10.0),
       color: Colors.transparent,
       child: Column(
@@ -31,7 +31,7 @@ void modalTypeCard(BuildContext context) {
           const SizedBox(height: 10.0),
           Container(
             decoration: BoxDecoration(
-              color: ColorsFrave.primary,
+              color: Colors.black,
               borderRadius: BorderRadius.circular(16.0)
             ),
             child: Padding(

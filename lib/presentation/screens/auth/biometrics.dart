@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
@@ -42,11 +40,11 @@ class _BiometricsState extends State<Biometrics> {
       ),
       body: Column(
         children: <Widget>[
-          const Text(
+          Text(
             'Welcome to',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
           ),
-          const Text(
+          Text(
             'PassGuard',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.normal),
           ),
@@ -70,7 +68,7 @@ class _BiometricsState extends State<Biometrics> {
               },
             ).wrapContainerDecoration(),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: ItemMenu(
@@ -96,17 +94,15 @@ class _BiometricsState extends State<Biometrics> {
       );
 
       if (authenticated == true) {
-        // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
           context,
-          routeFade(page: const HomeScreen()),
+          routeFade(page: HomeScreen()),
               (_) => false,
         );
       } else {
-        Navigator.pushAndRemoveUntil(
+        Navigator.push(
           context,
-          routeFade(page: const Biometrics()),
-              (_) => false,
+          routeFade(page: Biometrics()),
         );
       }
 
@@ -134,7 +130,7 @@ extension ItemMenuExtension on Widget {
       width: 375, // Increase the width of the container
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [

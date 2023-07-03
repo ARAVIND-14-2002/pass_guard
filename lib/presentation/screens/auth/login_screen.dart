@@ -7,6 +7,8 @@ import 'package:pass_guard/presentation/components/components.dart';
 import 'package:pass_guard/presentation/screens/Camera/camera_capture_screen.dart';
 import 'package:pass_guard/presentation/screens/home/home_screen.dart';
 import 'package:pass_guard/presentation/themes/themes.dart';
+import 'package:vibration/vibration.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -46,14 +48,24 @@ class _LoginScreenState extends State<LoginScreen> {
             routeFade(page: const HomeScreen()),
                 (_) => false,
           );
-        } else if (state.isFailPassword) {
+        } else if (state.isFailPassword && state.numbers.length == 6) {
           _incorrectAttempts++;
           if (_incorrectAttempts >= 3) {
             Navigator.pushAndRemoveUntil(
-                context, routeFade(page: CameraCaptureScreen()), (route) => false);
+              context,
+              routeFade(page: CameraCaptureScreen()),
+                  (route) => false,
+            );
             _incorrectAttempts = 0; // Reset the incorrect count
+          } else {
+            Vibration.vibrate(
+                duration: 500); // Vibrate the device for 500 milliseconds
+            Future.delayed(const Duration(milliseconds: 500)).then((_) {
+              authBloc.add(ClearAllNumbersEvent());
+            });
           }
         }
+
       },
       child: Scaffold(
         appBar: AppBar(
@@ -88,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: 'Enter Master Password',
                       fontSize: 24,
                       isTitle: true,
-                      color: Color(4294309367),
+                      color: Color(0xfff5f5f7),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -103,14 +115,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   (i) => Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                                 child: Icon(
-                                  state.numbers.length >= i + 1
+                                  state.numbers.length > i
                                       ? FontAwesomeIcons.solidCircle
                                       : FontAwesomeIcons.circle,
-                                  color: state.numbers.length >= i + 1
-                                      ? state.isFailPassword
+                                  color: state.isFailPassword && state.numbers.length == 6
                                       ? Colors.red
-                                      : ColorsFrave.primary
-                                      : Color(4294309367),
+                                      : ColorsArvi.primary,
                                   size: MediaQuery.of(context).size.width * 0.08,
                                 ),
                               ),
